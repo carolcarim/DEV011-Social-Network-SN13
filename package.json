@@ -42,10 +42,6 @@
     "version": "7.1.0",
     "commit": "d257c41694344460623eb1f1bb2a690bdfe33f83"
   },
-  "directories": {
-    "test": "test"
-  },
-  "author": "",
   "dependencies": {
     "firebase": "^10.5.0"
   }

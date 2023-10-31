@@ -3,12 +3,14 @@
 import { myFunction } from './lib/index.js';
 import home from './home.js';
 import login from './login.js';
+import register from './register.js';
 import error from './error.js';
 
 
 const routes = [
   { path: '/', component: home },
   { path: '/login', component: login },
+  { path: '/register', component: register },
   { path: '/error', component: error },
 ];
 

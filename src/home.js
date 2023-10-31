@@ -37,7 +37,12 @@ function home(navigateTo) {
   const buttonRegistrarse = document.createElement("button");
   buttonRegistrarse.setAttribute("id", "btnRegistrarse"); //agregamos
   buttonRegistrarse.textContent = "Registrarse";
-
+  buttonRegistrarse.addEventListener("click", () =>
+    //evento
+    {
+      navigateTo("/register");
+    }
+  );
   //Para agregar los elementos a la seccion
 /*   section.append(title, buttonIniciarSesion, buttonRegistrarse);
  */

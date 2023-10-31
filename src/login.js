@@ -38,15 +38,15 @@ function login(navigateTo) {
   });
 
   //Función botón regresar
-  const buttonReturn = document.createElement("button"); //falta crear evento
-  buttonReturn.textContent = "Regresar";
-  buttonReturn.setAttribute("id", "btnReturn"); //agregamos id
-  buttonReturn.addEventListener("click", () => {
+  const buttonReturnLogin = document.createElement("button"); //falta crear evento
+  buttonReturnLogin.textContent = "Regresar";
+  buttonReturnLogin.setAttribute("id", "btnReturnLogin"); //agregamos id
+  buttonReturnLogin.addEventListener("click", () => {
     //evento
     navigateTo("/");
   });
 
-  section.append(img, title, form, inputEmail, inputPass, buttonLogin, buttonReturn);
+  section.append(img, title, form, inputEmail, inputPass, buttonLogin, buttonReturnLogin);
   return section;
 }
 export default login;

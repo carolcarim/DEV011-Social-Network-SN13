@@ -1,34 +1,52 @@
 // file login.js
 
 function login(navigateTo) {
-  const section = document.createElement('section');
-  section.setAttribute('id', 'sectionLogin') //agregamos
+  const section = document.createElement("section");
+  section.setAttribute("id", "sectionLogin"); //agregamos id
 
-  const title = document.createElement('h2');
+  //Logo
+  const img = document.createElement("img");
+  img.src =
+    "https://github.com/carolcarim/DEV011-Social-Network-SN13/blob/main/src/Images/Drink%20Atlas%20Logo.png?raw=true";
+  img.alt = "Logo de Drink Atlas";
+  img.id = "drink2";
+  document.body.appendChild(img); //agregamos el documeto de imagen al documento body
 
-  //funcion boton regresar
-  const buttonReturn = document.createElement('button'); //creamos el  boton
-  buttonReturn.textContent = 'regresar'; //agregamos nombre al boton
-  buttonReturn.classList.add('btnReturn'); //añadimos clase 
-  buttonReturn.addEventListener('click', () => { //evento 
-  navigateTo('/')
+  //Título de Login 
+  const title = document.createElement("h2");
+  title.setAttribute("id", "titleLogin"); //agregamos id
+  title.textContent = "Iniciar sesión:";
+
+  //Input para correo y contraseña al iniciar sesión
+  const form = document.createElement("form");
+  //Correo
+  const inputEmail = document.createElement("input");
+  inputEmail.setAttribute("id", "inputEmail"); //agregamos id
+  inputEmail.placeholder = "Ingresar correo";
+  //Contraseña
+  const inputPass = document.createElement("input");
+  inputPass.setAttribute("id", "inputPass"); //agregamos id
+  inputPass.placeholder = "Ingresar contraseña";
+
+  //Función botón Login
+  const buttonLogin = document.createElement("button"); //creamos el  boton
+  buttonLogin.textContent = "Ingresar"; //agregamos nombre al boton
+  buttonLogin.setAttribute("id", "btnLogin"); //agregamos id
+  buttonLogin.addEventListener("click", () => {
+    //evento
+    navigateTo("/");
   });
 
-  const form = document.createElement('form');
-  const inputEmail = document.createElement('input');
-  const inputPass = document.createElement('input');
-  //funcion boton login
-  const buttonLogin = document.createElement('button');//falta crear evento
+  //Función botón regresar
+  const buttonReturn = document.createElement("button"); //falta crear evento
+  buttonReturn.textContent = "Regresar";
+  buttonReturn.setAttribute("id", "btnReturn"); //agregamos id
+  buttonReturn.addEventListener("click", () => {
+    //evento
+    navigateTo("/");
+  });
 
-  inputEmail.placeholder = 'Ingresa tu correo';
-  inputPass.placeholder = 'contraseña';
-  title.textContent = 'login';
-  buttonLogin.textContent = 'ir';
-  
-
-  form.append(inputEmail, inputPass, buttonLogin);
-  section.append(title, form, buttonReturn);
+  section.append(img, title, form, inputEmail, inputPass, buttonLogin, buttonReturn);
   return section;
 }
 export default login;
-

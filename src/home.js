@@ -44,8 +44,6 @@ function home(navigateTo) {
     }
   );
   //Para agregar los elementos a la seccion
-/*   section.append(title, buttonIniciarSesion, buttonRegistrarse);
- */
 section.appendChild(img);
 section.appendChild(title);
 section.appendChild(buttonIniciarSesion);

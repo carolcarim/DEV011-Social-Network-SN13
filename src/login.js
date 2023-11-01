@@ -5,12 +5,12 @@ function login(navigateTo) {
   section.setAttribute("id", "sectionLogin"); //agregamos id
 
   //Logo
-  const img = document.createElement("img");
-  img.src =
+  const imgLogo = document.createElement("img");
+  imgLogo.src =
     "https://github.com/carolcarim/DEV011-Social-Network-SN13/blob/main/src/Images/Drink%20Atlas%20Logo.png?raw=true";
-  img.alt = "Logo de Drink Atlas";
-  img.id = "drink2";
-  document.body.appendChild(img); //agregamos el documeto de imagen al documento body
+  imgLogo.alt = "Logo de Drink Atlas";
+  imgLogo.id = "drink2";
+ 
 
   //Título de Login 
   const title = document.createElement("h2");
@@ -37,6 +37,27 @@ function login(navigateTo) {
     navigateTo("/");
   });
 
+  //Funcion boton iniciar con google 
+  const buttonGoogle = document.createElement("button"); //creamos el boton
+  buttonGoogle.textContent = "Iniciar sesión con Google"; //agregamos nombre al boton
+  buttonGoogle.setAttribute("id", "btnGoogle"); //agregamos id
+  buttonGoogle.addEventListener('click', () => {
+    // Inicia sesión con Google
+    signInWithPopup(auth, Provider.Google)
+      .then((result) => {
+        // El usuario ha iniciado sesión correctamente
+        console.log(result);
+      })
+      .catch((error) => {
+        // Se produjo un error al iniciar sesión
+        console.error(error);
+      });
+  });
+
+ 
+
+
+
   //Función botón regresar
   const buttonReturnLogin = document.createElement("button"); //falta crear evento
   buttonReturnLogin.textContent = "Regresar";
@@ -46,7 +67,7 @@ function login(navigateTo) {
     navigateTo("/");
   });
 
-  section.append(img, title, form, inputEmail, inputPass, buttonLogin, buttonReturnLogin);
+  section.append(imgLogo, title, form, inputEmail, inputPass, buttonLogin, buttonGoogle, buttonReturnLogin);
   return section;
 }
 export default login;

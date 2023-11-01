@@ -64,7 +64,7 @@ body{
   margin: 10px;
 }
 
-#btnLogin, #btnReturnLogin {
+  #btnLogin, #btnReturnLogin, #btnGoogle  {
   background-color: white;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
@@ -75,6 +75,19 @@ body{
   width: 40%; 
   height: 40px; 
   margin: 10px;
+}
+
+#btnGoogle {
+  background-image: url("https://rotulosmatesanz.com/wp-content/uploads/2017/09/2000px-Google_G_Logo.svg_.png"); /* Ruta de la imagen de fondo */
+            background-size: 20px 20px; /* Tamaño de la imagen de fondo */
+            background-repeat: no-repeat; /* Evita la repetición de la imagen de fondo */
+            background-position: 10px center; /* Posición de la imagen en el botón */
+            padding-left: 40px; /* Espacio para la imagen */
+}
+
+#logoGoogle{
+width: 20px;
+height: 20px;
 }
 
 #sectionRegister {
@@ -118,3 +131,4 @@ body{
   height: 40px; 
   margin: 10px;
 }
+

@@ -21,10 +21,12 @@ const form = document.createElement("form");
 const inputUserName = document.createElement("input");
 inputUserName.setAttribute("id", "inputUserName"); //agregamos id
 inputUserName.placeholder = "Ingresa un nombre de usuario";
+
 //Correo
 const inputNewEmail = document.createElement("input");
 inputNewEmail.setAttribute("id", "inputNewEmail"); //agregamos id
 inputNewEmail.placeholder = "Ingresa un correo";
+
 //Crear contraseña
 const inputCreatePass = document.createElement("input");
 inputCreatePass.setAttribute("id", "inputCreatePass"); //agregamos id
@@ -35,9 +37,8 @@ inputCreatePass.type = "password"; // para que no se vea las letras al colocar l
 const buttonRegister = document.createElement("button"); //creamos el  boton
 buttonRegister.textContent = "Registrarme"; //agregamos nombre al boton
 buttonRegister.setAttribute("id", "btnRegister"); //agregamos id
-buttonRegister.addEventListener("click", () => {
-  //evento
-  navigateTo("/");
+buttonRegister.addEventListener('click', () => {
+  createUser().then(res => navigateTo('/homepage'));
 });
 
 //Función botón regresar

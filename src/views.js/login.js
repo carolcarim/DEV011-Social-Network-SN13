@@ -48,7 +48,7 @@ function login(navigateTo) {
   buttonGoogle.textContent = "Iniciar sesión con Google"; //agregamos nombre al boton
   buttonGoogle.setAttribute("id", "btnGoogle"); //agregamos id
   buttonGoogle.addEventListener('click', () => {
-    call_login_google().then(res => navigateTo('/'));
+    call_login_google().then(res => navigateTo('/homepage'));
   });
 
 

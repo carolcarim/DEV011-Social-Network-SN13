@@ -5,6 +5,7 @@ import home from './views.js/home.js';
 import login from './views.js/login.js';
 import register from './views.js/register.js';
 import error from './views.js/error.js';
+import homepage from './views.js/homepage.js';
 
 
 const routes = [
@@ -12,6 +13,7 @@ const routes = [
   { path: '/login', component: login },
   { path: '/register', component: register },
   { path: '/error', component: error },
+  { path: '/homepage', component: homepage },
 ];
 
 const defaultRoute = '/';

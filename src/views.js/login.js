@@ -1,5 +1,7 @@
 // file login.js
 
+import { call_login_google } from "../lib";
+
 function login(navigateTo) {
   const section = document.createElement("section");
   section.setAttribute("id", "sectionLogin"); //agregamos id
@@ -19,14 +21,18 @@ function login(navigateTo) {
 
   //Input para correo y contraseña al iniciar sesión
   const form = document.createElement("form");
+
   //Correo
   const inputEmail = document.createElement("input");
   inputEmail.setAttribute("id", "inputEmail"); //agregamos id
   inputEmail.placeholder = "Ingresar correo";
+
   //Contraseña
   const inputPass = document.createElement("input");
   inputPass.setAttribute("id", "inputPass"); //agregamos id
   inputPass.placeholder = "Ingresar contraseña";
+  inputPass.type = "password"; // para que no se vea las letras al colocar la contraseña
+  
 
   //Función botón Login
   const buttonLogin = document.createElement("button"); //creamos el  boton
@@ -42,20 +48,8 @@ function login(navigateTo) {
   buttonGoogle.textContent = "Iniciar sesión con Google"; //agregamos nombre al boton
   buttonGoogle.setAttribute("id", "btnGoogle"); //agregamos id
   buttonGoogle.addEventListener('click', () => {
-    // Inicia sesión con Google
-    signInWithPopup(auth, Provider.Google)
-      .then((result) => {
-        // El usuario ha iniciado sesión correctamente
-        console.log(result);
-      })
-      .catch((error) => {
-        // Se produjo un error al iniciar sesión
-        console.error(error);
-      });
+    call_login_google().then(res => navigateTo('/'));
   });
-
- 
-
 
 
   //Función botón regresar
@@ -71,3 +65,4 @@ function login(navigateTo) {
   return section;
 }
 export default login;
+

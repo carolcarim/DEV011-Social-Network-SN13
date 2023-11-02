@@ -29,6 +29,7 @@ inputNewEmail.placeholder = "Ingresa un correo";
 const inputCreatePass = document.createElement("input");
 inputCreatePass.setAttribute("id", "inputCreatePass"); //agregamos id
 inputCreatePass.placeholder = "Ingresa una contraseña";
+inputCreatePass.type = "password"; // para que no se vea las letras al colocar la contraseña
 
 //Función botón para registrarse
 const buttonRegister = document.createElement("button"); //creamos el  boton

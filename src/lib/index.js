@@ -1,10 +1,20 @@
 import { auth, provider } from "../../firebase-config";
-import { signInWithPopup,createUserWithEmailAndPassword} from "firebase/auth"; //importamos metodos
+import { signInWithPopup,createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth"; //importamos metodos
 
-export const myFunction = () => {
-  // aqui tu codigo
-  console.log("Hola mundo!");
-};
+//Acceso de usuarios existentes
+export function signInUsers (email, password) {
+  return signInWithEmailAndPassword(auth, email, password)
+.then((userCredential) => {
+  // Signed in 
+  const user = userCredential.user;
+  return user 
+})
+.catch((error) => {
+  const errorCode = error.code;
+  const errorMessage = error.message;
+  return errorMessage
+});
+}
 
 //funcion de boton de google
 export function call_login_google() {
@@ -22,12 +32,6 @@ export function call_login_google() {
       //...
     });
 }
-
-// Obtiene referencias a los elementos de entrada del DOM
-const inputUserName = document.getElementById('inputUserName');
-const inputNewEmail = document.getElementById('inputNewEmail');
-const inputCreatePass = document.getElementById('inputCreatePass');
-const registerButton = document.getElementById('btnRegister');
 
  //Funcion registrar usuarios nuevos 
  export function createUser(userName, email, password) {

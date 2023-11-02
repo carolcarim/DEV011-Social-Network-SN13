@@ -1,6 +1,4 @@
 // Este es el punto de entrada de tu aplicacion
-
-import { myFunction } from './lib/index.js';
 import home from './views.js/home.js';
 import login from './views.js/login.js';
 import register from './views.js/register.js';
@@ -28,7 +26,6 @@ export function navigateTo(hash) {
       route.path,
       window.location.origin + route.path,
     );
-
     if (root.firstChild) {
       root.removeChild(root.firstChild);
     }

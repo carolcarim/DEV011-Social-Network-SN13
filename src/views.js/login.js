@@ -1,4 +1,5 @@
 import { call_login_google } from "../lib";
+import { signInUsers } from "../lib";
 
 function login(navigateTo) {
   const section = document.createElement("section");
@@ -37,8 +38,11 @@ function login(navigateTo) {
   buttonLogin.textContent = "Ingresar"; //agregamos nombre al boton
   buttonLogin.setAttribute("id", "btnLogin"); //agregamos id
   buttonLogin.addEventListener("click", () => {
-    //evento
-    navigateTo("/");
+    const emailLogin = inputEmail.value; 
+    const passwordLogin = inputPass.value;
+  
+    signInUsers(emailLogin, passwordLogin).then(res => navigateTo('/homepage'));
+   /*  navigateTo('/homepage'); */
   });
 
   //Funcion boton iniciar con google 

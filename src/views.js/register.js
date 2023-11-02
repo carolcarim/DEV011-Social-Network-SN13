@@ -15,7 +15,7 @@ document.body.appendChild(img); //agregamos el documeto de imagen al documento b
 //Título de Register
 const title = document.createElement("h2");
 title.setAttribute("id", "titleRegister"); //agregamos id
-title.textContent = "Ingresa tus datos para registrarte:";
+title.textContent = "Crea tu cuenta:";
 
 //Input para nombre de usuario, correo y crear contraseña
 const form = document.createElement("form");

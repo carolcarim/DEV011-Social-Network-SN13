@@ -12,7 +12,6 @@ function login(navigateTo) {
   imgLogo.alt = "Logo de Drink Atlas";
   imgLogo.id = "drink2";
  
-
   //Título de Login 
   const title = document.createElement("h2");
   title.setAttribute("id", "titleLogin"); //agregamos id

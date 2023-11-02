@@ -1,3 +1,5 @@
+import { createUser } from "../lib";
+
 function register(navigateTo) { 
     const section = document.createElement("section");
     section.setAttribute("id", "sectionRegister"); //agregamos id
@@ -38,7 +40,11 @@ const buttonRegister = document.createElement("button"); //creamos el  boton
 buttonRegister.textContent = "Registrarme"; //agregamos nombre al boton
 buttonRegister.setAttribute("id", "btnRegister"); //agregamos id
 buttonRegister.addEventListener('click', () => {
-  createUser().then(res => navigateTo('/homepage'));
+  const userName = inputUserName.value;
+  const email = inputNewEmail.value; 
+  const password = inputCreatePass.value;
+
+  createUser(userName, email, password).then(res => navigateTo('/homepage'));
 });
 
 //Función botón regresar

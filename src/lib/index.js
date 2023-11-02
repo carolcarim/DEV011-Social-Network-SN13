@@ -1,9 +1,5 @@
-// aqui exportaras las funciones que necesites
-
 import { auth, provider } from "../../firebase-config";
-
 import { signInWithPopup,createUserWithEmailAndPassword} from "firebase/auth"; //importamos metodos
-
 
 export const myFunction = () => {
   // aqui tu codigo
@@ -26,9 +22,16 @@ export function call_login_google() {
       //...
     });
 }
+
+// Obtiene referencias a los elementos de entrada del DOM
+const inputUserName = document.getElementById('inputUserName');
+const inputNewEmail = document.getElementById('inputNewEmail');
+const inputCreatePass = document.getElementById('inputCreatePass');
+const registerButton = document.getElementById('btnRegister');
+
  //Funcion registrar usuarios nuevos 
- export function createUser(email,password) {
- return createUserWithEmailAndPassword(auth, email, password)
+ export function createUser(userName, email, password) {
+ return createUserWithEmailAndPassword(auth, userName, email, password)
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;

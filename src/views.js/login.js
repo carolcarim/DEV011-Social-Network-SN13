@@ -1,5 +1,3 @@
-// file login.js
-
 import { call_login_google } from "../lib";
 
 function login(navigateTo) {

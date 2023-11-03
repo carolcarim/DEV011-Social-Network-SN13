@@ -36,11 +36,22 @@ function login(navigateTo) {
   const buttonLogin = document.createElement("button"); //creamos el  boton
   buttonLogin.textContent = "Ingresar"; //agregamos nombre al boton
   buttonLogin.setAttribute("id", "btnLogin"); //agregamos id
-  buttonLogin.addEventListener("click", () => {
+  buttonLogin.addEventListener("click", async () => {
     const emailLogin = inputEmail.value; 
     const passwordLogin = inputPass.value;
   
-    signInUsers(emailLogin, passwordLogin).then(res => navigateTo('/homepage'));
+    // .then(res => {if (res) navigateTo('/homepage')})
+    const resLogin= await signInUsers(emailLogin, passwordLogin)
+    if(resLogin.email && resLogin.password){
+      navigateTo('/homepage');
+    }
+    else{
+      alert(' Email o contraseña incorrecta')
+    }
+    console.log('RES ===>>>>>>', resLogin);
+    // .then(res => console.log(res))
+    // .catch(err => console.log('ACA CATCH===>', err))
+    
    /*  navigateTo('/homepage'); */
   });
 

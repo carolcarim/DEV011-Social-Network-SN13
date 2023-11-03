@@ -3,13 +3,17 @@ import { signInWithPopup,createUserWithEmailAndPassword, signInWithEmailAndPassw
 
 //Acceso de usuarios existentes
 export function signInUsers (email, password) {
+
+  console.log(email, password)
   return signInWithEmailAndPassword(auth, email, password)
 .then((userCredential) => {
   // Signed in 
   const user = userCredential.user;
+  console.log(auth, email, password, userCredential.user)
   return user 
 })
 .catch((error) => {
+  console.log('ACA CATCH 2===>', error)
   const errorCode = error.code;
   const errorMessage = error.message;
   return errorMessage
@@ -34,8 +38,8 @@ export function call_login_google() {
 }
 
  //Funcion registrar usuarios nuevos 
- export function createUser(userName, email, password) {
- return createUserWithEmailAndPassword(auth, userName, email, password)
+ export function createUser(email, password) {
+ return createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;

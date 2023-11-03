@@ -19,10 +19,10 @@ title.textContent = "Crea tu cuenta:";
 
 //Input para nombre de usuario, correo y crear contraseña
 const form = document.createElement("form");
-//Nombre de usuario
+/* //Nombre de usuario
 const inputUserName = document.createElement("input");
 inputUserName.setAttribute("id", "inputUserName"); //agregamos id
-inputUserName.placeholder = "Ingresa un nombre de usuario";
+inputUserName.placeholder = "Ingresa un nombre de usuario"; */
 
 //Correo
 const inputNewEmail = document.createElement("input");
@@ -40,11 +40,11 @@ const buttonRegister = document.createElement("button"); //creamos el  boton
 buttonRegister.textContent = "Registrarme"; //agregamos nombre al boton
 buttonRegister.setAttribute("id", "btnRegister"); //agregamos id
 buttonRegister.addEventListener('click', () => {
-  const userName = inputUserName.value;
+  /* const userName = inputUserName.value; */
   const email = inputNewEmail.value; 
   const password = inputCreatePass.value;
 
-  createUser(userName, email, password).then(res => navigateTo('/homepage'));
+  createUser(email, password).then(res => navigateTo('/homepage'));
 });
 
 //Función botón regresar
@@ -57,7 +57,7 @@ buttonReturnRegister.addEventListener("click", () => {
 });
 
  //Para agregar los elementos a la seccion
- section.append(img, title, form, inputUserName, inputNewEmail, inputCreatePass, buttonRegister, buttonReturnRegister);
+ section.append(img, title, form, inputNewEmail, inputCreatePass,  buttonRegister, buttonReturnRegister);
   return section;
 }
 export default register;

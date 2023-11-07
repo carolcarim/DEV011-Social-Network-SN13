@@ -18,42 +18,53 @@ function login(navigateTo) {
   title.textContent = "Iniciar sesión:";
 
   //Input para correo y contraseña al iniciar sesión
-  const form = document.createElement("form");
+  const formLogin = document.createElement("formLogin");
 
   //Correo
   const inputEmail = document.createElement("input");
   inputEmail.setAttribute("id", "inputEmail"); //agregamos id
-  inputEmail.placeholder = "Ingresar correo";
+  inputEmail.placeholder = "Ingresar correo...";
 
   //Contraseña
   const inputPass = document.createElement("input");
   inputPass.setAttribute("id", "inputPass"); //agregamos id
-  inputPass.placeholder = "Ingresar contraseña";
+  inputPass.placeholder = "Ingresar contraseña...";
   inputPass.type = "password"; // para que no se vea las letras al colocar la contraseña
   
+  //Modal correo o contraseña invalidos
+  const modalLogin = document.createElement("div");
+  modalLogin.setAttribute("id", "modalLogin");
+  modalLogin.style.display = "none"; // Ocultar el modal inicialmente
+  document.body.appendChild(modalLogin);
+
+  modalLogin.innerHTML = `
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <p>Correo y/o contraseña inválidos.</p>
+  </div>
+`;
+
+  modalLogin.querySelector("#closeModal").addEventListener("click", () => {
+    modalLogin.style.display = "none"; // Cerrar el modal al hacer clic en el botón de cierre
+  });
 
   //Función botón Login
   const buttonLogin = document.createElement("button"); //creamos el  boton
   buttonLogin.textContent = "Ingresar"; //agregamos nombre al boton
   buttonLogin.setAttribute("id", "btnLogin"); //agregamos id
-  buttonLogin.addEventListener("click", async () => {
+  buttonLogin.addEventListener("click", async () => { //investigar async 
     const emailLogin = inputEmail.value; 
     const passwordLogin = inputPass.value;
   
-    // .then(res => {if (res) navigateTo('/homepage')})
-    const resLogin= await signInUsers(emailLogin, passwordLogin)
-    if(resLogin.email && resLogin.password){
-      navigateTo('/homepage');
-    }
-    else{
-      alert(' Email o contraseña incorrecta')
-    }
-    console.log('RES ===>>>>>>', resLogin);
-    // .then(res => console.log(res))
-    // .catch(err => console.log('ACA CATCH===>', err))
-    
-   /*  navigateTo('/homepage'); */
-  });
+   // Llamar a la función signInUsers desde index.js
+   const resLogin = await signInUsers(emailLogin, passwordLogin);
+
+   if (resLogin.email, resLogin.password) {
+     navigateTo('/homepage');
+   } else {
+    modalLogin.style.display = "block";
+  }
+ });
 
   //Funcion boton iniciar con google 
   const buttonGoogle = document.createElement("button"); //creamos el boton
@@ -73,7 +84,7 @@ function login(navigateTo) {
     navigateTo("/");
   });
 
-  section.append(imgLogo, title, form, inputEmail, inputPass, buttonLogin, buttonGoogle, buttonReturnLogin);
+  section.append(imgLogo, title, formLogin, inputEmail, inputPass, buttonLogin, buttonGoogle, buttonReturnLogin);
   return section;
 }
 export default login;

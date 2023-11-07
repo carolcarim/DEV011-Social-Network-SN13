@@ -59,6 +59,31 @@ body {
   color: #ffffff;
 }
 
+#modalLogin {
+  position: absolute;
+  top: 62%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  width: 79%;
+  height: 12%;
+  overflow: auto;
+  background-color: rgb(255, 255, 255);
+}
+
+#modalLogin .modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: red;
+  font-size: 16px;
+}
+
 #inputEmail,
 #inputPass {
   width: 80%;
@@ -67,8 +92,7 @@ body {
   border-radius: 10px;
 }
 
-#btnLogin,
-#btnReturnLogin {
+#btnLogin {
   background-color: white;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
@@ -77,6 +101,19 @@ body {
   cursor: pointer;
   border-radius: 50px;
   width: 40%;
+  height: 40px;
+  margin: 10px;
+}
+
+#btnReturnLogin, #btnReturnRegister {
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #16a5a3;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 50px;
+  width: 30%;
   height: 40px;
   margin: 10px;
 }
@@ -135,8 +172,7 @@ body {
   border-radius: 10px;
 }
 
-#btnRegister,
-#btnReturnRegister {
+#btnRegister {
   background-color: white;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
@@ -147,6 +183,56 @@ body {
   width: 40%;
   height: 40px;
   margin: 10px;
+}
+
+#modalRegisterEmail {
+  position: absolute;
+  top: 62%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  width: 79%;
+  height: 12%;
+  overflow: auto;
+  background-color: rgb(255, 255, 255);
+}
+
+#modalRegisterEmail .modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: red;
+  font-size: 16px;
+}
+
+#modalRegisterPass {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  width: 79%;
+  height: 12%;
+  overflow: auto;
+  background-color: rgb(255, 255, 255);
+}
+
+#modalRegisterPass .modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: red;
+  font-size: 16px;
 }
 
 #sectionHomepage {

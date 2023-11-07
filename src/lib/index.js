@@ -1,10 +1,8 @@
 import { auth, provider } from "../../firebase-config";
 import { signInWithPopup,createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth"; //importamos metodos
 
-//Acceso de usuarios existentes
+//Función para el botón de inicio de sesión usuarios existentes
 export function signInUsers (email, password) {
-
-  console.log(email, password)
   return signInWithEmailAndPassword(auth, email, password)
 .then((userCredential) => {
   // Signed in 
@@ -20,7 +18,7 @@ export function signInUsers (email, password) {
 });
 }
 
-//funcion de boton de google
+//Función para el botón de inicio de sesión con Google
 export function call_login_google() {
   return signInWithPopup(auth, provider)
     .then((result) => {
@@ -33,19 +31,21 @@ export function call_login_google() {
       const errorMessage = error.message;
       console.log({errorMessage});
       return errorMessage
-      //...
     });
 }
 
- //Funcion registrar usuarios nuevos 
+ //Función para el botón de registrar nuevos usuarios  
  export function createUser(email, password) {
  return createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    console.log("usuario registrado:", user);
-    return userCredential
-    //..
+    auth.signOut();
+    // Enviar un correo de verificación al usuario
+    sendEmailVerification(auth.currentUser)
+    .then(() => {
+      console.log('Correo de verificación enviado');
+    })
   })
   .catch((error) => {
     const errorCode = error.code;

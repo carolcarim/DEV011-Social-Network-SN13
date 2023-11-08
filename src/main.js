@@ -5,7 +5,6 @@ import register from './views.js/register.js';
 import error from './views.js/error.js';
 import homepage from './views.js/homepage.js';
 
-
 const routes = [
   { path: '/', component: home },
   { path: '/login', component: login },
@@ -29,7 +28,6 @@ export function navigateTo(hash) {
     if (root.firstChild) {
       root.removeChild(root.firstChild);
     }
-    
     root.appendChild(route.component(navigateTo));
   } else {
     navigateTo('/error');

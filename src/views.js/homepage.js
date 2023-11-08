@@ -1,11 +1,13 @@
+import { createPost, querySnapshot, paintRealTime} from "../lib/index.js";
+
 function homepage(navigateTo) {
     const section = document.createElement("section");
     section.setAttribute("id", "sectionHomepage"); //agregamos id
 
 //Título de Login 
-const titleHomepage = document.createElement("h2");
+/* const titleHomepage = document.createElement("h2");
 titleHomepage.setAttribute("id", "titleHomepage"); //agregamos id
-titleHomepage.textContent = "¿Qué quieres publicar?";
+titleHomepage.textContent = "¿Qué quieres publicar?"; */
 
 //Logo para el Inicio
 const imgLogoHp = document.createElement("img");
@@ -30,8 +32,11 @@ const buttonCreatePost = document.createElement("button");
 buttonCreatePost.textContent = "Publicar";
 buttonCreatePost.setAttribute("id", "btnCreatePost");
 buttonCreatePost.addEventListener("click", () => {
+  const comment = document.getElementById('postHp').value;
+  console.log('funciona click', comment);
+  createPost(comment); 
   //evento
-  navigateTo("/"); //deberia aparecer un pop-up? para poder publicar... 
+  //navigateTo("/"); //deberia aparecer un pop-up? para poder publicar... 
 });
 
 //Función botón "Crear Post"
@@ -43,11 +48,44 @@ buttonEditPost.addEventListener("click", () => {
   navigateTo("/"); //deberia aparecer un pop-up? para poder publicar... 
 });
 
-//Div para Post
-const post = document.createElement("div");
-post.setAttribute("id", "postHp"); //agregamos id
+//Input para Post
+const inputpost = document.createElement("input");
+inputpost.setAttribute("id", "postHp"); //agregamos id
+inputpost.placeholder = "¿Qué quieres publicar hoy?"
 
-section.append(titleHomepage, imgLogoHp, menuBar, imgProfilePic, buttonCreatePost, buttonEditPost, post);
+//seccion post
+const postSection = document.createElement("article");
+postSection.setAttribute("class", "postSection"); //agregamos id
+
+// Agregar post al muro
+querySnapshot.then((docs)=>{
+  docs.forEach((doc) => {
+    console.log(doc.id); 
+    console.log(doc.data());
+    const post = document.createElement('input');
+    post.value = doc.data().comment;
+    postSection.append(post); 
+  });
+})
+
+paintRealTime((querySnapshot) => {
+  postSection.textContent = ''; 
+  querySnapshot.forEach((doc) => { 
+      console.log(doc.id); 
+      console.log(doc.data());
+      const post = document.createElement('input');
+      post.value = doc.data().comment;
+      postSection.append(post); 
+    }); 
+});
+
+
+
+
+
+
+section.append(imgLogoHp, menuBar, imgProfilePic, buttonCreatePost, buttonEditPost, inputpost, postSection);
   return section;
 }
+
 export default homepage;

@@ -1,4 +1,6 @@
-import { createPost, querySnapshot, paintRealTime } from '../lib/index.js';
+import {
+  createPost, querySnapshot, paintRealTime
+} from '../lib/index.js';
 
 function homepage(navigateTo) {
   const section = document.createElement('section');
@@ -77,7 +79,27 @@ titleHomepage.textContent = "¿Qué quieres publicar?"; */
     });
   });
 
-  section.append(imgLogoHp, menuBar, imgProfilePic, buttonCreatePost, buttonEditPost, inputpost, postSection);
+  /* // Función botón "Cerrar sesión"
+  const buttonSignOut = document.createElement('button');
+  buttonSignOut.textContent = 'Cerrar Sesión';
+  buttonSignOut.setAttribute('id', 'btnSignOut');
+  buttonSignOut.addEventListener('click', () => {
+    // Llama a la función signOutUser cuando se hace clic en el botón
+    signOut();
+    // evento
+    /* navigateTo('/');
+  }); */
+
+  // Agregamos la sección a la página
+  section.append(
+    imgLogoHp,
+    menuBar,
+    imgProfilePic,
+    buttonCreatePost,
+    buttonEditPost,
+    inputpost,
+    postSection,
+  );
   return section;
 }
 export default homepage;

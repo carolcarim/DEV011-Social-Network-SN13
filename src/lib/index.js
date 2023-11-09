@@ -60,6 +60,8 @@ export function createUser(email, password) {
     });
 }
 
+// Función para el botón de cerrar sesión
+
 // Funciones para homepage
 const postCollection = collection(db, 'postDrinks');
 // 1.Crear Post

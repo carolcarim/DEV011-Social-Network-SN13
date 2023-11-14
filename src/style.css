@@ -292,68 +292,79 @@ position: absolute;
   left: 10%;
 }
 
-#btnEditPost {
-  background-color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: #16a5a3;
-  font-size: 15px;
-  cursor: pointer;
-  border-radius: 10px;
-  width: 20%;
-  height: 30px;
-  margin: 10px;
-  position: absolute;
-  top: 10%;
-  left: 65%;
-}
-
-#btnDelete {
-  background-color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: #16a5a3;
-  font-size: 15px;
-  cursor: pointer;
-  border-radius: 10px;
-  width: 20%;
-  height: 30px;
-  margin: 10px;
-  position: absolute;
-  top: 20%;
-  left: 65%;
-}
-
-#btnSignOut {
-  background-color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: #16a5a3;
-  font-size: 15px;
-  cursor: pointer;
-  border-radius: 10px;
-  width: 30%;
-  height: 30px;
-  margin: 10px;
-  position: absolute;
-  top: 3%;
-  left: 65%;
-}
-
 #postHp {
   background-color: white;
   border: 2px solid black;
   border-radius: 10px;
-  width: 50%;
-  height: 100px;
+  width: 80%;
+  height: 60px;
   margin: 10px;
   position: absolute;
-  top: 30%;
-  left: 23%;
+  top: 18%;
+  left: 7%;
 }
 
 .postSection {
-  position: absolute;
-  top: 50%;
-  left: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Alinea los posts al centro horizontalmente */
+  margin-top: 250px; /* Espacio entre el contenido superior y los posts */
+}
+
+/* Estilos para cada post */
+.postStyles {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #87c6c5;
+}
+
+/* Estilos para el contenido del post */
+.postStyles input {
+  border: none;
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: #87c6c5;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: black;
+}
+
+/* Estilos para el botón de "Like" */
+.postStyles .likeButton {
+  background-color: transparent;
+  padding: 15px 10px;
+  cursor: pointer;
+  border: none;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/929/929559.png'); /* Ruta a tu imagen de corazón */
+  background-size: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 3px;
+}
+
+.postStyles .btnDelete, .btnEdit {
+  background-color: white;
+  padding: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: black;
+}
+
+.likeButton.liked {
+  background-image: url('https://cdn1.iconfinder.com/data/icons/app-user-interface-flat/64/like_love_heart_app_user_interface-512.png'); /* Ruta a tu imagen de corazón */
+  background-size: 23px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.likeCounter {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: black;
+  font-size: 12px;
 }

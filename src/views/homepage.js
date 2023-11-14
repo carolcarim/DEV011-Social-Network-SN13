@@ -1,5 +1,5 @@
 import {
-  createPost, querySnapshot, paintRealTime, deletePost,
+  createPost, querySnapshot, paintRealTime, deletePost, likePost,
 } from '../lib/index.js';
 
 function homepage(navigateTo) {
@@ -68,35 +68,72 @@ titleHomepage.textContent = "¿Qué quieres publicar?"; */
     });
   });
 
-  paintRealTime((querySnapshot) => { //definimos la funcion 
+  paintRealTime((querySnapshot) => { // definimos la funcion
     postSection.textContent = ''; // vacía el contenido del elemento
-    querySnapshot.forEach((doc) => { //itera en cada publicacion 
+    querySnapshot.forEach((doc) => { // itera en cada publicacion
       console.log(doc.id);
       console.log(doc.data());
-      const postContainer = document.createElement('div'); //creamos un div
-      const post = document.createElement('input'); //creamos input
-      post.value = doc.data().comment; //establecemos en comment el valor del elemento
-      const deleteButton = document.createElement('button'); //agregamos el boton eliminar 
+
+      // Crear el elemento "cada post" publicado
+      const eachPost = document.createElement('div');
+      eachPost.classList.add('postStyles');
+      eachPost.value = doc.data().comment; // establecemos en comment el valor del elemento
+
+      // Crear botón para elminar post
+      const deleteButton = document.createElement('button'); // agregamos el boton eliminar
       deleteButton.textContent = 'Eliminar';
-      const editButton = document.createElement('button'); //agregamos el boton editar 
+      deleteButton.classList.add('btnDelete');
+
+      // Crear botón para editar post
+      const editButton = document.createElement('button'); // agregamos el boton editar
       editButton.textContent = 'Editar';
-  
-      
-     
-      // funcion eliminar
-      deleteButton.addEventListener('click', () => { //agregamos evento
+      editButton.classList.add('btnEdit');
+
+      // Crear el elemento de texto para el contenido del post
+      const eachPostContent = document.createElement('input');
+      eachPostContent.value = doc.data().comment;
+      eachPostContent.classList.add('eachPostContent'); // Agregar la clase de estilo para el contenido del post
+
+      // Crear el botón de "Like" para este post
+      const likeButton = document.createElement('button');
+      likeButton.setAttribute('id', `btnLike_${doc.id}`); // Asignar un ID único al botón
+      likeButton.classList.add('likeButton'); // Agregar la clase de estilo base para el botón de "Like"
+      // Crear el contador de likes
+      const likeCounter = document.createElement('span');
+      likeCounter.classList.add('likeCounter'); // Puedes agregar estilos según tus necesidades
+      likeCounter.textContent = doc.data().likedBy ? doc.data().likedBy.length.toString() : '0'; // Mostrar la cantidad de likes
+
+      likeButton.addEventListener('click', async () => {
+        const userId = 'ID_DEL_USUARIO_ACTUAL'; // Reemplaza con el ID del usuario actual
+
+        // Verificar si el usuario ya dio like
+        const likedBy = doc.data().likedBy || [];
+
+        if (likedBy.includes(userId)) {
+          // Si el usuario ya dio like, quitar el like usando arrayRemove
+          await likePost(doc.id, userId, 'arrayRemove');
+          likeButton.classList.remove('liked');
+          likeCounter.textContent = likedBy.length > 1 ? (likedBy.length - 1).toString() : '0';
+        } else {
+          // Si el usuario no ha dado like, agregar el like usando arrayUnion
+          await likePost(doc.id, userId, 'arrayUnion');
+          likeButton.classList.add('liked');
+          likeCounter.textContent = (likedBy.length + 1).toString();
+        }
+      });
+
+      // Función para eliminar un post
+      deleteButton.addEventListener('click', () => { // agregamos evento
         const documentId = doc.id;
         deletePost(documentId);
       });
 
-      postContainer.appendChild(post);
-      postContainer.appendChild(deleteButton);
-      postContainer.appendChild(editButton);
-      postSection.appendChild(postContainer);
-
+      // agregamos los elementos al post
+      postSection.appendChild(eachPost);
+      eachPost.append(eachPostContent, likeButton, deleteButton, editButton);
+      postSection.append(eachPost);
     });
   });
-
    // Función botón "Cerrar sesión"
   // const buttonSignOut = document.createElement('button');
  // buttonSignOut.textContent = 'Cerrar Sesión';

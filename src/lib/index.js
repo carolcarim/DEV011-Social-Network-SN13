@@ -3,11 +3,15 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth'; // importamos metodos
-import { orderBy, query } from 'firebase/firestore';
+import {
+  orderBy, query, updateDoc, arrayUnion, arrayRemove, serverTimestamp,
+} from 'firebase/firestore';
 import { auth, provider } from '../../firebase-config';
 import {
-  db, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc
+  db, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc,
 } from '../../firestore';
+
+
 
 
 // Función para el botón de inicio de sesión usuarios existentes
@@ -61,11 +65,43 @@ export function createUser(email, password) {
     });
 }
 
-// Función para el botón de cerrar sesión
 
 // Funciones para homepage
 const postCollection = collection(db, 'postDrinks');
-// 1.Crear Post
+
+// Función para dar like a los post
+export async function likePost(docRef, userId, operationType) {
+  try {
+    // Obtener la información actual del post
+    const postQuerySnapshot = await getDocs(docRef);
+    console.log(postQuerySnapshot);
+    const postDoc = postQuerySnapshot.docs[0];
+    console.log(postDoc);
+    if (postDoc.exists()) {
+      // Obtener la lista de usuarios que han dado like
+      const likedBy = postDoc.data().likedBy || [];
+
+      // Realizar la operación correspondiente
+      if (operationType === 'arrayUnion') {
+        await updateDoc(docRef, {
+          likedBy: arrayUnion(userId),
+        });
+      } else if (operationType === 'arrayRemove') {
+        await updateDoc(docRef, {
+          likedBy: arrayRemove(userId),
+        });
+      }
+
+      console.log('Operación de like realizada correctamente');
+    } else {
+      console.log('El post no existe');
+    }
+  } catch (error) {
+    console.error('Error al dar like al post', error);
+  }
+}
+
+// Funcion crear Post
 export const createPost = (comment) => {
   addDoc(postCollection, {
     comment,

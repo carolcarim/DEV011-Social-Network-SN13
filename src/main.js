@@ -1,9 +1,9 @@
 // Este es el punto de entrada de tu aplicacion
-import home from './views.js/home.js';
-import login from './views.js/login.js';
-import register from './views.js/register.js';
-import error from './views.js/error.js';
-import homepage from './views.js/homepage.js';
+import home from './views/home.js';
+import login from './views/login.js';
+import register from './views/register.js';
+import error from './views/error.js';
+import homepage from './views/homepage.js';
 
 const routes = [
   { path: '/', component: home },

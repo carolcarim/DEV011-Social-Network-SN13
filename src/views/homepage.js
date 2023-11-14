@@ -68,31 +68,48 @@ titleHomepage.textContent = "¿Qué quieres publicar?"; */
     });
   });
 
-  paintRealTime((querySnapshot) => {
-    postSection.textContent = '';
-    querySnapshot.forEach((doc) => {
+  paintRealTime((querySnapshot) => { //definimos la funcion 
+    postSection.textContent = ''; // vacía el contenido del elemento
+    querySnapshot.forEach((doc) => { //itera en cada publicacion 
       console.log(doc.id);
       console.log(doc.data());
-      const post = document.createElement('input');
-      post.value = doc.data().comment;
-      postSection.append(post);
+      const postContainer = document.createElement('div'); //creamos un div
+      const post = document.createElement('input'); //creamos input
+      post.value = doc.data().comment; //establecemos en comment el valor del elemento
+      const deleteButton = document.createElement('button'); //agregamos el boton eliminar 
+      deleteButton.textContent = 'Eliminar';
+      const editButton = document.createElement('button'); //agregamos el boton editar 
+      editButton.textContent = 'Editar';
+  
+      
+     
+      // funcion eliminar
+      deleteButton.addEventListener('click', () => { //agregamos evento
+        // Delete the post from the database
+        db.collection('posts').doc(doc.id).delete();
+      });
+
+      postContainer.appendChild(post);
+      postContainer.appendChild(deleteButton);
+      postContainer.appendChild(editButton);
+      postSection.appendChild(postContainer);
+
     });
   });
 
-  /* // Función botón "Cerrar sesión"
-  const buttonSignOut = document.createElement('button');
-  buttonSignOut.textContent = 'Cerrar Sesión';
-  buttonSignOut.setAttribute('id', 'btnSignOut');
-  buttonSignOut.addEventListener('click', () => {
+   // Función botón "Cerrar sesión"
+  // const buttonSignOut = document.createElement('button');
+ // buttonSignOut.textContent = 'Cerrar Sesión';
+  //buttonSignOut.setAttribute('id', 'btnSignOut');
+  //buttonSignOut.addEventListener('click', () => {
     // Llama a la función signOutUser cuando se hace clic en el botón
-    signOut();
+   // signOut(); //
     // evento
-    /* navigateTo('/');
-  }); */
+    // navigateTo('/');
+  //}); 
 
   // Agregamos la sección a la página
-  section.append(
-    imgLogoHp,
+  section.append(imgLogoHp,
     menuBar,
     imgProfilePic,
     buttonCreatePost,
@@ -100,6 +117,7 @@ titleHomepage.textContent = "¿Qué quieres publicar?"; */
     inputpost,
     postSection,
   );
+
   return section;
 }
 export default homepage;

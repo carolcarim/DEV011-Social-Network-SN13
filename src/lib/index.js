@@ -76,7 +76,8 @@ export const createPost = (comment) => {
 // Funcion para eliminar post
 
 export const deletePost = (documentId) => {
-  deleteDoc(doc(db, 'posts', documentId));
+  console.log(documentId, 'deletePost');
+  deleteDoc(doc(db, 'postDrinks', documentId));
 };
 
 

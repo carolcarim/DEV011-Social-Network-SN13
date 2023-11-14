@@ -85,7 +85,7 @@ titleHomepage.textContent = "¿Qué quieres publicar?"; */
      
       // funcion eliminar
       deleteButton.addEventListener('click', () => { //agregamos evento
-        const documentId = post.value;
+        const documentId = doc.id;
         deletePost(documentId);
       });
 

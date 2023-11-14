@@ -1,5 +1,5 @@
 import {
-  createPost, querySnapshot, paintRealTime
+  createPost, querySnapshot, paintRealTime, deletePost,
 } from '../lib/index.js';
 
 function homepage(navigateTo) {
@@ -85,8 +85,8 @@ titleHomepage.textContent = "¿Qué quieres publicar?"; */
      
       // funcion eliminar
       deleteButton.addEventListener('click', () => { //agregamos evento
-        // Delete the post from the database
-        db.collection('posts').doc(doc.id).delete();
+        const documentId = post.value;
+        deletePost(documentId);
       });
 
       postContainer.appendChild(post);

@@ -6,8 +6,9 @@ import {
 import { orderBy, query } from 'firebase/firestore';
 import { auth, provider } from '../../firebase-config';
 import {
-  db, collection, addDoc, getDocs, onSnapshot,
+  db, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc
 } from '../../firestore';
+
 
 // Función para el botón de inicio de sesión usuarios existentes
 export function signInUsers(email, password) {
@@ -71,6 +72,14 @@ export const createPost = (comment) => {
     date: Date.now(),
   });
 };
+ 
+// Funcion para eliminar post
+
+export const deletePost = (documentId) => {
+  deleteDoc(doc(db, 'posts', documentId));
+};
+
+
 
 export const querySnapshot = getDocs(postCollection);
 export const q = query(postCollection, orderBy('date', 'desc')); // para que aparezca en orden la publciacion

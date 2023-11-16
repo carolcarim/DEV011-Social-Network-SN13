@@ -288,8 +288,8 @@ position: absolute;
   height: 30px;
   margin: 10px;
   position: absolute;
-  top: 10%;
-  left: 10%;
+  top: 26%;
+  left: 37%;
 }
 
 #postHp {
@@ -308,7 +308,7 @@ position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center; /* Alinea los posts al centro horizontalmente */
-  margin-top: 250px; /* Espacio entre el contenido superior y los posts */
+  margin-top: 280px; /* Espacio entre el contenido superior y los posts */
 }
 
 /* Estilos para cada post */

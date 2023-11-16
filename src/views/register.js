@@ -1,4 +1,4 @@
-import { createUser } from '../lib';
+import { createUser } from '../lib/auth';
 
 function register(navigateTo) {
   const section = document.createElement('section');

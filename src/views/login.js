@@ -1,5 +1,5 @@
 // eslint-disable-next-line camelcase
-import { call_login_google, signInUsers } from '../lib';
+import { call_login_google, signInUsers } from '../lib/auth';
 
 function login(navigateTo) {
   const section = document.createElement('section');

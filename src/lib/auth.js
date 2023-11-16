@@ -1,18 +1,18 @@
 import {
-  signInWithPopup,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-} from 'firebase/auth'; // importamos metodos
+  signInWithPopup,
+  onAuthStateChanged,
+  sendEmailVerification,
+  GoogleAuthProvider,
+} from 'firebase/auth';
 import {
-  orderBy, query, updateDoc, arrayUnion, arrayRemove, serverTimestamp,
+  addDoc, arrayUnion, arrayRemove, collection,
+  deleteDoc, doc, getDocs, updateDoc,
 } from 'firebase/firestore';
-import { auth, provider } from '../../firebase-config';
 import {
-  db, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc,
-} from '../../firestore';
-
-
-
+  auth, db,
+} from './firebase';
 
 // Función para el botón de inicio de sesión usuarios existentes
 export function signInUsers(email, password) {
@@ -31,7 +31,9 @@ export function signInUsers(email, password) {
 }
 
 // Función para el botón de inicio de sesión con Google
+// eslint-disable-next-line camelcase
 export function call_login_google() {
+  const provider = new GoogleAuthProvider();
   return signInWithPopup(auth, provider)
     .then((result) => {
       const user = result.user;
@@ -53,21 +55,29 @@ export function createUser(email, password) {
       const user = userCredential.user;
       auth.signOut();
       // Enviar un correo de verificación al usuario
-      sendEmailVerification(auth.currentUser).then(() => {
+      sendEmailVerification(user).then(() => {
         console.log('Correo de verificación enviado');
       });
+      return user;
     })
     .catch((error) => {
       const errorMessage = error.message;
       console.log('Error al registrar usuario:', errorMessage);
       return errorMessage;
-      // ..
     });
 }
 
+// Manejar cambios en el estado de autenticación
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const userId = user.uid;
+    console.log('ID del usuario actual:', userId);
 
-// Funciones para homepage
-const postCollection = collection(db, 'postDrinks');
+    // Ahora puedes usar userId en tu aplicación
+  } else {
+    console.log('No hay usuario autenticado');
+  }
+});
 
 // Función para dar like a los post
 export async function likePost(docRef, userId, operationType) {
@@ -101,23 +111,10 @@ export async function likePost(docRef, userId, operationType) {
   }
 }
 
-// Funcion crear Post
-export const createPost = (comment) => {
-  addDoc(postCollection, {
-    comment,
-    date: Date.now(),
-  });
-};
- 
-// Funcion para eliminar post
-
+// Función para eliminar un post
 export const deletePost = (documentId) => {
   console.log(documentId, 'deletePost');
   deleteDoc(doc(db, 'postDrinks', documentId));
 };
 
-
-
-export const querySnapshot = getDocs(postCollection);
-export const q = query(postCollection, orderBy('date', 'desc')); // para que aparezca en orden la publciacion
-export const paintRealTime = (callback) => onSnapshot(q, callback);
+export const storeUserInfo = (info) => addDoc(collection(db, 'usersDrinks'), info); // revisar

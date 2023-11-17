@@ -6,13 +6,13 @@ import {
 } from '../lib/auth.js';
 
 import {
-  createNewPost, querySnapshot, paintRealTime,
+  createNewPost, paintRealTime,
 } from '../lib/store.js';
 import {
   auth,
 } from '../lib/firebase.js';
 
-function homepage(navigateTo) {
+function homepage() {
   const section = document.createElement('section');
   section.setAttribute('id', 'sectionHomepage');
 
@@ -46,6 +46,8 @@ function homepage(navigateTo) {
         const userId = user.uid;
         console.log('ID del usuario actual:', userId);
         createNewPost(userId, content);
+        // Después de crear el nuevo post, volver a pintar todos los posts
+        paintRealTime();
       } else {
         console.error("Error: 'userId' no está definido");
       }
@@ -62,43 +64,33 @@ function homepage(navigateTo) {
   postSection.setAttribute('class', 'postSection'); // le damos una clase
 
   // Agregar un post al muro
-  querySnapshot.then((docs) => {
+  /* querySnapshot.then((docs) => {
     docs.forEach((doc) => {
       console.log(doc.id);
       console.log(doc.data());
-      const post = document.createElement('input');
+      const post = document.createElement('input'); // CAMBIAMOS INPUT A DIV
       post.value = doc.data().content;
-      postSection.append(post);
+      postSection.append(post); // quitar child de ser necesario
     });
   });
-
-  // Función para que aparezcan en el muro las publicaciones
+ */
+  // Función para que aparezcan las publicaciones en el muro
   paintRealTime((querySnapshot) => {
     postSection.textContent = ''; // vacía el contenido del elemento -- innerHTML
     // Aquí deberías manejar el snapshot en tiempo real
-    if (querySnapshot && querySnapshot.docs) {
-      querySnapshot.docs.forEach((doc) => { // itera en cada publicacion
+    if (querySnapshot) {
+      querySnapshot.forEach((doc) => { // itera en cada publicacion
         console.log(doc.id);
         console.log(doc.data());
 
         // Crear el elemento "cada post" publicado
-        const eachPost = document.createElement('div');
+        const eachPost = document.createElement('article');
         eachPost.classList.add('postStyles');
         eachPost.value = doc.data().content; // establecemos en content el valor del elemento
 
-        // Crear botón para elminar post
-        const deleteButton = document.createElement('button'); // agregamos el boton eliminar
-        deleteButton.textContent = 'Eliminar';
-        deleteButton.classList.add('btnDelete');
-
-        // Crear botón para editar post
-        const editButton = document.createElement('button'); // agregamos el boton editar
-        editButton.textContent = 'Editar';
-        editButton.classList.add('btnEdit');
-
         // Crear el elemento de texto para el contenido del post
-        const eachPostContent = document.createElement('input');
-        eachPostContent.value = doc.data().content;
+        const eachPostContent = document.createElement('p');
+        eachPostContent.textContent = doc.data().content;
         eachPostContent.classList.add('eachPostContent'); // Agregar la clase de estilo para el contenido del post
 
         // Crear el botón de "Like" para este post
@@ -130,16 +122,31 @@ function homepage(navigateTo) {
           }
         });
 
+        // Crear botón para elminar post
+        const deleteButton = document.createElement('button'); // agregamos el boton eliminar
+        deleteButton.textContent = 'Eliminar';
+        deleteButton.classList.add('btnDelete');
+
+        // Crear botón para editar post
+        const editButton = document.createElement('button'); // agregamos el boton editar
+        editButton.textContent = 'Editar';
+        editButton.classList.add('btnEdit');
+
         // Función para eliminar un post
         deleteButton.addEventListener('click', () => { // agregamos evento
           const documentId = doc.id;
           deletePost(documentId);
         });
 
-        // Agregamos los elementos al post
-        postSection.appendChild(eachPost);
-        eachPost.append(eachPostContent, likeButton, deleteButton, editButton);
-        postSection.append(eachPost);
+        // Agregar los elementos al post
+        eachPost.appendChild(likeButton);
+        eachPost.appendChild(likeCounter);
+        eachPost.appendChild(deleteButton);
+        eachPost.appendChild(editButton);
+        
+        // Agregar cada post a la sección de posts
+        postSection.appendChild(eachPost, eachPostContent);
+        eachPost.append(eachPostContent);
       });
     }
   });

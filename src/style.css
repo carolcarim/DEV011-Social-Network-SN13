@@ -304,11 +304,11 @@ position: absolute;
   left: 7%;
 }
 
-.postSection {
+ .postSection {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Alinea los posts al centro horizontalmente */
-  margin-top: 280px; /* Espacio entre el contenido superior y los posts */
+  align-items: center; 
+  margin-top: 280px; 
 }
 
 /* Estilos para cada post */
@@ -318,7 +318,7 @@ position: absolute;
   padding: 10px;
   margin-bottom: 10px;
   background-color: #87c6c5;
-}
+} 
 
 /* Estilos para el contenido del post */
 .postStyles input {
@@ -337,11 +337,26 @@ position: absolute;
   padding: 15px 10px;
   cursor: pointer;
   border: none;
-  background-image: url('https://cdn-icons-png.flaticon.com/512/929/929559.png'); /* Ruta a tu imagen de corazón */
+  background-image: url('https://cdn-icons-png.flaticon.com/512/929/929559.png');
   background-size: 20px;
   background-position: center;
   background-repeat: no-repeat;
   margin: 3px;
+}
+
+.likeButton.liked {
+  background-image: url('https://cdn1.iconfinder.com/data/icons/app-user-interface-flat/64/like_love_heart_app_user_interface-512.png');
+  background-size: 23px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.likeCounter {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: black;
+  font-size: 12px;
+  margin: 5px;
 }
 
 .postStyles .btnDelete, .btnEdit {
@@ -353,18 +368,4 @@ position: absolute;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: black;
-}
-
-.likeButton.liked {
-  background-image: url('https://cdn1.iconfinder.com/data/icons/app-user-interface-flat/64/like_love_heart_app_user_interface-512.png'); /* Ruta a tu imagen de corazón */
-  background-size: 23px;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.likeCounter {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: black;
-  font-size: 12px;
 }

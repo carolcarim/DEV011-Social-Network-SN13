@@ -26,5 +26,5 @@ export {
 };
 
 export const querySnapshot = getDocs(postCollection);
-export const q = query(postCollection, orderBy('date', 'desc')); // para que aparezca en orden la publciacion
+export const q = query(postCollection, orderBy('timestamp', 'desc')); // para que aparezca en orden la publciacion
 export const paintRealTime = (callback) => onSnapshot(q, callback);

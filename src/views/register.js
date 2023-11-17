@@ -18,6 +18,7 @@ function register(navigateTo) {
 
   // Input para nombre de usuario, correo y crear contraseña
   const form = document.createElement('form');
+
   /* //Nombre de usuario
 const inputUserName = document.createElement("input");
 inputUserName.setAttribute("id", "inputUserName"); //agregamos id
@@ -79,6 +80,23 @@ inputUserName.placeholder = "Ingresa un nombre de usuario"; */
     modalRegisterPass.style.display = 'none'; // Cerrar el modal al hacer clic en el botón de cierre
   });
 
+  // Modal formato de correo no válido
+  const modalRegisterError = document.createElement('div');
+  modalRegisterError.setAttribute('id', 'modalRegisterError');
+  modalRegisterError.style.display = 'none'; // Ocultar el modal inicialmente
+  document.body.appendChild(modalRegisterError);
+
+  modalRegisterError.innerHTML = `
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <p>Error: correo ya ha sido registrado.</p>
+  </div>
+  `;
+
+  modalRegisterError.querySelector('#closeModal').addEventListener('click', () => {
+    modalRegisterError.style.display = 'none'; // Cerrar el modal al hacer clic en el botón de cierre
+  });
+
   // Función botón para registrarse
   const buttonRegister = document.createElement('button'); // creamos el  boton
   buttonRegister.textContent = 'Registrarme'; // agregamos nombre al boton
@@ -106,7 +124,7 @@ inputUserName.placeholder = "Ingresa un nombre de usuario"; */
       }
     } else {
     // Llamar a la función para registrar al usuario
-      createUser(email, password).then((res) => navigateTo('/homepage'));
+      createUser(email, password).then((res) => navigateTo('/welcome'));
     }
   });
 

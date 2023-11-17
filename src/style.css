@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(23, 23, 23);
+background-color: rgb(23, 23, 23);
 }
 
 #drink {
@@ -235,41 +235,59 @@ body {
   font-size: 16px;
 }
 
+#sectionWelcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#drink2welcome {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 250px;
+}
+
+#titleWelcome {
+  margin-top: 500px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+#btnIniciarSesion2 {
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #16a5a3;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 50px;
+  width: 40%;
+  height: 40px;
+  margin: 10px;
+}
+
 #sectionHomepage {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#titleHomepage {
-  margin-top: 400px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 23px;
-  color: #ffffff;
+#menuBarHp {
+background-color: #16a5a3;
+width: 100%;
+height: 50px;
+position: absolute;
+  top: 5%;
+  left: 0;
 }
 
 #drink4 {
   position: absolute;
-  top: 5%;
-  left: 10%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
-}
-
-#menuBarHp {
-background-color: #16a5a3;
-/* border: 5px solid white; */
-width: 100%;
-height: 50px;
-position: absolute;
-  top: 10%;
-  left: 0;
-}
-
-#profilePic {
-  position: absolute;
-  top: 13%;
+  top: 8%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100px;
@@ -288,19 +306,20 @@ position: absolute;
   height: 30px;
   margin: 10px;
   position: absolute;
-  top: 26%;
+  top: 23%;
   left: 37%;
 }
 
-#postHp {
+/* INPUT PARA INGRESAR TEXTO QUE SE QUIERE PUBLICAR*/
+#postHp { 
   background-color: white;
-  border: 2px solid black;
+  border: 2px solid rgb(233, 193, 193);
   border-radius: 10px;
   width: 80%;
   height: 60px;
   margin: 10px;
   position: absolute;
-  top: 18%;
+  top: 15%;
   left: 7%;
 }
 
@@ -308,7 +327,7 @@ position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center; 
-  margin-top: 280px; 
+  margin-top: 260px; 
 }
 
 /* Estilos para cada post */
@@ -318,23 +337,34 @@ position: absolute;
   padding: 10px;
   margin-bottom: 10px;
   background-color: #87c6c5;
+  width: 300px;
+  height: auto;
 } 
 
 /* Estilos para el contenido del post */
-.postStyles input {
+.eachPostContent {
   border: none;
   width: 100%;
   margin-bottom: 10px;
   background-color: #87c6c5;
   font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  color: black;
+  word-break: break-all;
+}
+
+.userName {
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: black;
+  font-size: 12px;
+  margin: 5px;
 }
 
 /* Estilos para el botón de "Like" */
 .postStyles .likeButton {
   background-color: transparent;
-  padding: 15px 10px;
+  padding: 10px 10px;
   cursor: pointer;
   border: none;
   background-image: url('https://cdn-icons-png.flaticon.com/512/929/929559.png');
@@ -359,13 +389,26 @@ position: absolute;
   margin: 5px;
 }
 
-.postStyles .btnDelete, .btnEdit {
-  background-color: white;
-  padding: 5px;
-  font-size: 15px;
+.postStyles .btnEdit {
+  background-color: transparent;
+  padding: 10px 10px;
   cursor: pointer;
-  border-radius: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: black;
+  border: none;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1827/1827933.png');
+  background-size: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 3px;
+}
+
+.postStyles .btnDelete {
+  background-color: transparent;
+  padding: 10px 10px;
+  cursor: pointer;
+  border: none;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/3221/3221845.png');
+  background-size: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 3px;
 }

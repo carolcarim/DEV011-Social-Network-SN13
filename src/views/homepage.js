@@ -26,12 +26,6 @@ function homepage() {
   const menuBar = document.createElement('div');
   menuBar.setAttribute('id', 'menuBarHp'); // agregamos id
 
-  // Foto de perfil sobre el Div --> menú
-  const imgProfilePic = document.createElement('img');
-  imgProfilePic.src = 'https://freesvg.org/img/abstract-user-flat-4.png';
-  imgProfilePic.alt = 'Foto perfil del usuario';
-  imgProfilePic.id = 'profilePic';
-
   // Función botón "Crear Post"
   const buttonCreatePost = document.createElement('button');
   buttonCreatePost.textContent = 'Publicar';
@@ -63,17 +57,6 @@ function homepage() {
   const postSection = document.createElement('article');
   postSection.setAttribute('class', 'postSection'); // le damos una clase
 
-  // Agregar un post al muro
-  /* querySnapshot.then((docs) => {
-    docs.forEach((doc) => {
-      console.log(doc.id);
-      console.log(doc.data());
-      const post = document.createElement('input'); // CAMBIAMOS INPUT A DIV
-      post.value = doc.data().content;
-      postSection.append(post); // quitar child de ser necesario
-    });
-  });
- */
   // Función para que aparezcan las publicaciones en el muro
   paintRealTime((querySnapshot) => {
     postSection.textContent = ''; // vacía el contenido del elemento -- innerHTML
@@ -87,6 +70,11 @@ function homepage() {
         const eachPost = document.createElement('article');
         eachPost.classList.add('postStyles');
         eachPost.value = doc.data().content; // establecemos en content el valor del elemento
+
+        // Crear el elemento de texto para el contenido del post
+        const userName = document.createElement('p');
+        userName.textContent = doc.data().userId;
+        userName.classList.add('userName'); // Agregar la clase de estilo para el contenido del post
 
         // Crear el elemento de texto para el contenido del post
         const eachPostContent = document.createElement('p');
@@ -124,12 +112,12 @@ function homepage() {
 
         // Crear botón para elminar post
         const deleteButton = document.createElement('button'); // agregamos el boton eliminar
-        deleteButton.textContent = 'Eliminar';
+        deleteButton.textContent = '';
         deleteButton.classList.add('btnDelete');
 
         // Crear botón para editar post
         const editButton = document.createElement('button'); // agregamos el boton editar
-        editButton.textContent = 'Editar';
+        editButton.textContent = '';
         editButton.classList.add('btnEdit');
 
         // Función para eliminar un post
@@ -139,14 +127,13 @@ function homepage() {
         });
 
         // Agregar los elementos al post
-        eachPost.appendChild(likeButton);
-        eachPost.appendChild(likeCounter);
-        eachPost.appendChild(deleteButton);
-        eachPost.appendChild(editButton);
-        
-        // Agregar cada post a la sección de posts
+        eachPost.appendChild(userName);
         postSection.appendChild(eachPost, eachPostContent);
         eachPost.append(eachPostContent);
+        eachPost.appendChild(likeButton);
+        eachPost.appendChild(likeCounter);
+        eachPost.appendChild(editButton);
+        eachPost.appendChild(deleteButton);
       });
     }
   });
@@ -165,9 +152,8 @@ function homepage() {
 
   // Agregamos toda la sección a la página
   section.append(
-    imgLogoHp,
     menuBar,
-    imgProfilePic,
+    imgLogoHp,
     buttonCreatePost,
     inputpost,
     postSection,

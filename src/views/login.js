@@ -30,42 +30,26 @@ function login(navigateTo) {
   inputPass.placeholder = 'Ingresar contraseña...';
   inputPass.type = 'password'; // para que no se vea las letras al colocar la contraseña
 
-  // Modal correo o contraseña invalidos
-  const modalLogin = document.createElement('div');
-  modalLogin.setAttribute('id', 'modalLogin');
-  modalLogin.style.display = 'none'; // Ocultar el modal inicialmente
-  document.body.appendChild(modalLogin);
-
-  modalLogin.innerHTML = `
-  <div class="modal-content">
-    <span class="close" id="closeModal">&times;</span>
-    <p>Correo y/o contraseña inválidos.</p>
-  </div>
-`;
-
-  modalLogin.querySelector('#closeModal').addEventListener('click', () => {
-    modalLogin.style.display = 'none'; // Cerrar el modal al hacer clic en el botón de cierre
-  });
-
   // Función botón Login
   const buttonLogin = document.createElement('button'); // creamos el  boton
   buttonLogin.textContent = 'Ingresar'; // agregamos nombre al boton
   buttonLogin.setAttribute('id', 'btnLogin'); // agregamos id
   buttonLogin.addEventListener('click', async () => {
-    // investigar async
-    const emailLogin = inputEmail.value;
-    const passwordLogin = inputPass.value;
-
-    // Llamar a la función signInUsers desde index.js
-    const resLogin = await signInUsers(emailLogin, passwordLogin);
-
-    if ((resLogin.email, resLogin.password)) {
+    const password = document.getElementById('inputPass').value;
+    const email = document.getElementById('inputEmail').value;
+    signInUsers(email, password).then((cred) => {
       navigateTo('/homepage');
-    } else {
-      modalLogin.style.display = 'block';
-    }
+    }).catch((error) => {
+      const errorCode = error.code;
+      if (errorCode === 'auth/invalid-email') {
+        alert('El correo no es valido');
+      } else if (errorCode === 'auth/user-not-found') {
+        alert('Usuario no logueado');
+      } else if (errorCode === 'auth/wrong-password') {
+        alert('La contraseña es incorrecta');
+      }
+    });
   });
-
   // Funcion boton iniciar con google
   const buttonGoogle = document.createElement('button'); // creamos el boton
   buttonGoogle.textContent = 'Iniciar sesión con Google'; // agregamos nombre al boton

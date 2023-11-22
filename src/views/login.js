@@ -52,19 +52,17 @@ function login(navigateTo) {
   buttonLogin.textContent = 'Ingresar'; // agregamos nombre al boton
   buttonLogin.setAttribute('id', 'btnLogin'); // agregamos id
   buttonLogin.addEventListener('click', async () => {
-    // investigar async
-    const emailLogin = inputEmail.value;
-    const passwordLogin = inputPass.value;
-
-    // Llamar a la función signInUsers desde index.js
-    const resLogin = await signInUsers(emailLogin, passwordLogin);
-
-    if ((resLogin.email, resLogin.password)) {
-      navigateTo('/homepage');
-    } else {
-      modalLogin.style.display = 'block';
-    }
+    signInUsers()
+    .then(() => {
+    console.log('funciona el click');
+    navigateTo(('/homepage'))
+    .catch((error) => {
+      console.error('Error al crear el usuario:', error);
+    });
   });
+  });
+
+  
 
   // Funcion boton iniciar con google
   const buttonGoogle = document.createElement('button'); // creamos el boton

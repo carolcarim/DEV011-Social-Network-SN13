@@ -2,7 +2,7 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import {
-  likePost, deletePost,
+  likePost, deletePost, signOutFunction,
 } from '../lib/auth.js';
 
 import {
@@ -12,7 +12,7 @@ import {
   auth,
 } from '../lib/firebase.js';
 
-function homepage() {
+function homepage(navigateTo) {
   const section = document.createElement('section');
   section.setAttribute('id', 'sectionHomepage');
 
@@ -139,16 +139,13 @@ function homepage() {
   });
 
   // Función botón "Cerrar sesión"
-  /* const buttonSignOut = document.createElement('button');
+  const buttonSignOut = document.createElement('button');
   buttonSignOut.textContent = 'Cerrar Sesión';
   buttonSignOut.setAttribute('id', 'btnSignOut');
   buttonSignOut.addEventListener('click', () => {
-    // Llama a la función signOutUser cuando se hace clic en el botón
-    signOut(); //
-    evento;
+    signOutFunction();
     navigateTo('/');
   });
- */
 
   // Agregamos toda la sección a la página
   section.append(
@@ -157,6 +154,7 @@ function homepage() {
     buttonCreatePost,
     inputpost,
     postSection,
+    buttonSignOut,
   );
 
   return section;

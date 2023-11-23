@@ -3,7 +3,6 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   onAuthStateChanged,
-  sendEmailVerification,
   GoogleAuthProvider,
   signOut,
 } from 'firebase/auth';
@@ -50,12 +49,16 @@ onAuthStateChanged(auth, (user) => {
 });
 
 // Función para dar like a los post
-export async function likePost(docRef, userId, operationType) {
+export async function likePost(postId, operationType) {
+  console.log(postId, operationType);
+  const user = auth.currentUser;
+  console.log(user.uid);
   try {
     // Obtener la información actual del post
-    const postQuerySnapshot = await getDocs(docRef);
+    const postRef = doc(db, 'postsDrinks', postId);
+    const postQuerySnapshot = await getDocs(postRef);
     console.log(postQuerySnapshot);
-    const postDoc = postQuerySnapshot.docs[0];
+    const postDoc = postQuerySnapshot.data();
     console.log(postDoc);
     if (postDoc.exists()) {
       // Obtener la lista de usuarios que han dado like
@@ -63,12 +66,12 @@ export async function likePost(docRef, userId, operationType) {
 
       // Realizar la operación correspondiente
       if (operationType === 'arrayUnion') {
-        await updateDoc(docRef, {
-          likedBy: arrayUnion(userId),
+        await updateDoc(postRef, {
+          likedBy: arrayUnion(user.uid),
         });
       } else if (operationType === 'arrayRemove') {
-        await updateDoc(docRef, {
-          likedBy: arrayRemove(userId),
+        await updateDoc(postRef, {
+          likedBy: arrayRemove(user.uid),
         });
       }
 
@@ -87,6 +90,7 @@ export const deletePost = (documentId) => {
   deleteDoc(doc(db, 'postDrinks', documentId));
 };
 
+// Función para cerrar sesión 
 export const signOutFunction = () => {
   signOut(auth);
 };

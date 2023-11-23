@@ -18,9 +18,8 @@ function home(navigateTo) {
   const buttonIniciarSesion = document.createElement('button'); // creamos el elemento boton
   buttonIniciarSesion.setAttribute('id', 'btnIniciarSesion'); // agregamos
   buttonIniciarSesion.textContent = 'Iniciar sesión'; // contenido del boton
-  buttonIniciarSesion.addEventListener('click', () =>
+  buttonIniciarSesion.addEventListener('click', () => {
   // evento
-  {
     navigateTo('/login');
   });
 
@@ -28,9 +27,8 @@ function home(navigateTo) {
   const buttonRegistrarse = document.createElement('button');
   buttonRegistrarse.setAttribute('id', 'btnRegistrarse'); // agregamos
   buttonRegistrarse.textContent = 'Registrarse';
-  buttonRegistrarse.addEventListener('click', () =>
+  buttonRegistrarse.addEventListener('click', () => {
   // evento
-  {
     navigateTo('/register');
   });
   // Para agregar los elementos a la seccion

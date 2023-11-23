@@ -2,6 +2,10 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import {
+  doc as fnDoc,
+  getDoc,
+} from 'firebase/firestore';
+import {
   likePost, deletePost, signOutFunction,
 } from '../lib/auth.js';
 
@@ -9,8 +13,9 @@ import {
   createNewPost, paintRealTime,
 } from '../lib/store.js';
 import {
-  auth,
+  auth, db,
 } from '../lib/firebase.js';
+import { registeredUserName } from './register.js';
 
 function homepage(navigateTo) {
   const section = document.createElement('section');
@@ -26,6 +31,9 @@ function homepage(navigateTo) {
   const menuBar = document.createElement('div');
   menuBar.setAttribute('id', 'menuBarHp'); // agregamos id
 
+  // Definir la variable userId fuera de la función onAuthStateChanged
+  let userId = null;
+
   // Función botón "Crear Post"
   const buttonCreatePost = document.createElement('button');
   buttonCreatePost.textContent = 'Publicar';
@@ -34,10 +42,13 @@ function homepage(navigateTo) {
     const content = document.getElementById('postHp').value;
     console.log('funciona click', content);
 
+    // Limpiar el contenido del input después de crear el post
+    document.getElementById('postHp').value = '';
+
     // Obtener el estado de autenticación actual
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const userId = user.uid;
+        userId = user.uid;
         console.log('ID del usuario actual:', userId);
         createNewPost(userId, content);
         // Después de crear el nuevo post, volver a pintar todos los posts
@@ -60,7 +71,6 @@ function homepage(navigateTo) {
   // Función para que aparezcan las publicaciones en el muro
   paintRealTime((querySnapshot) => {
     postSection.textContent = ''; // vacía el contenido del elemento -- innerHTML
-    // Aquí deberías manejar el snapshot en tiempo real
     if (querySnapshot) {
       querySnapshot.forEach((doc) => { // itera en cada publicacion
         console.log(doc.id);
@@ -73,7 +83,7 @@ function homepage(navigateTo) {
 
         // Crear el elemento de texto para el contenido del post
         const userName = document.createElement('p');
-        userName.textContent = doc.data().userId;
+        userName.textContent = registeredUserName;
         userName.classList.add('userName'); // Agregar la clase de estilo para el contenido del post
 
         // Crear el elemento de texto para el contenido del post
@@ -89,25 +99,46 @@ function homepage(navigateTo) {
         // Crear el contador de likes
         const likeCounter = document.createElement('span');
         likeCounter.classList.add('likeCounter'); // Puedes agregar estilos según tus necesidades
-        likeCounter.textContent = doc.data().likedBy ? doc.data().likedBy.length.toString() : '0'; // Mostrar la cantidad de likes
+        // Función para actualizar el contador de likes
+        function updateLikeCounter(likedBy) {
+          likeCounter.textContent = likedBy.length > 0 ? likedBy.length.toString() : '0';
+        }
+        updateLikeCounter(doc.data().likedBy || []);
 
         likeButton.addEventListener('click', async () => {
-          const userId = 'ID_DEL_USUARIO_ACTUAL'; // Reemplaza con el ID del usuario actual
+          const postId = doc.id;
+          const prueba = await likePost(postId, "arrayUnion")
+          console.log({prueba});
+          // try {
+          // // Obtener la información actual del post
+          //   console.log({postId});
+          //   console.log('Referencia al documento:', postRef);
 
-          // Verificar si el usuario ya dio like
-          const likedBy = doc.data().likedBy || [];
+          //   // Obtener la información actual del post
+          //   const postDoc = await getDoc(postRef);
+          //   console.log({postDoc});
+          //   if (postDoc) {
+          //     console.log("entra al if", postDoc.data());
+          //   // Verificar si el usuario ya dio like
+          //     const likedBy = postDoc.data().likedBy || [];
 
-          if (likedBy.includes(userId)) {
-          // Si el usuario ya dio like, quitar el like usando arrayRemove
-            await likePost(doc.id, userId, 'arrayRemove');
-            likeButton.classList.remove('liked');
-            likeCounter.textContent = likedBy.length > 1 ? (likedBy.length - 1).toString() : '0';
-          } else {
-          // Si el usuario no ha dado like, agregar el like usando arrayUnion
-            await likePost(doc.id, userId, 'arrayUnion');
-            likeButton.classList.add('liked');
-            likeCounter.textContent = (likedBy.length + 1).toString();
-          }
+          //     if (likedBy.includes(userId)) {
+          //     // Si el usuario ya dio like, quitar el like usando arrayRemove
+          //       await likePost(postId, userId, 'arrayRemove');
+          //       likeButton.classList.remove('liked');
+          //       updateLikeCounter(likedBy.filter((id) => id !== userId));
+          //     } else {
+          //     // Si el usuario no ha dado like, agregar el like usando arrayUnion
+          //       await likePost(postId, userId, 'arrayUnion');
+          //       likeButton.classList.add('liked');
+          //       updateLikeCounter([...likedBy, userId]);
+          //     }
+          //   } else {
+          //     console.log('El post no existe');
+          //   }
+          // } catch (error) {
+          //   console.error('Error al dar like al post', error);
+          // }
         });
 
         // Crear botón para elminar post

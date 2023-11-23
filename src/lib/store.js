@@ -11,11 +11,15 @@ const postCollection = collection(db, 'postDrinks');
 export function createNewPost(userId, content) {
   if (userId && content) {
     const timestamp = new Date();
-    addDoc(postCollection, {
+
+    // Agregar un nuevo documento con un ID generado automáticamente
+    const newDocRef = addDoc(postCollection, {
       userId,
       content,
       timestamp,
+      likedBy: [],
     });
+    console.log('Documento agregado con el ID:', newDocRef.id);
   } else {
     console.error('Error: User ID or content is undefined or null');
   }

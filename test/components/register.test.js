@@ -1,13 +1,8 @@
 import register from '../../src/views/register.js';
 
-jest.mock('../../src/lib/auth.js', ()=> {
-return {
-  createUser:jest.fn(() => {
-    return Promise.resolve()
-  })
-}
-}); //se usa jestmock para simular firebase 
-
+jest.mock('../../src/lib/auth.js', () => ({
+  createUser: jest.fn(() => Promise.resolve()),
+})); // se usa jestmock para simular firebase
 
 describe('createUser', () => {
   it('should call createUserWithEmailAndPassword with the correct parameters and navigate to "/"', async () => {
@@ -17,9 +12,6 @@ describe('createUser', () => {
 
     await createUser(navigateTo);
 
-   
     expect(navigateTo).toHaveBeenCalledWith('/');
   });
-
-  
 });

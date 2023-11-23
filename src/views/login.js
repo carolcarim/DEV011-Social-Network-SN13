@@ -30,6 +30,57 @@ function login(navigateTo) {
   inputPass.placeholder = 'Ingresar contraseña...';
   inputPass.type = 'password'; // para que no se vea las letras al colocar la contraseña
 
+  // Modal correo invalido
+  const modalLogin = document.createElement('div');
+  modalLogin.setAttribute('id', 'modalLogin');
+  modalLogin.style.display = 'none'; // Ocultar el modal inicialmente
+  document.body.appendChild(modalLogin);
+
+  modalLogin.innerHTML = `
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <p>El correo ingresado no es inválido.</p>
+  </div>
+`;
+
+  modalLogin.querySelector('#closeModal').addEventListener('click', () => {
+    modalLogin.style.display = 'none'; // Cerrar el modal al hacer clic en el botón de cierre
+  });
+
+  // Modal contraseña invalida
+  const modalLoginPass = document.createElement('div');
+  modalLoginPass.setAttribute('id', 'modalLoginPass');
+  modalLoginPass.style.display = 'none'; // Ocultar el modal inicialmente
+  document.body.appendChild(modalLoginPass);
+
+  modalLoginPass.innerHTML = `
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <p>La contraseña ingresada es inválida.</p>
+  </div>
+`;
+
+  modalLoginPass.querySelector('#closeModal').addEventListener('click', () => {
+    modalLoginPass.style.display = 'none'; // Cerrar el modal al hacer clic en el botón de cierre
+  });
+
+  // Modal usuario no encontrado
+  const modalLoginUser = document.createElement('div');
+  modalLoginUser.setAttribute('id', 'modalLoginUser');
+  modalLoginUser.style.display = 'none'; // Ocultar el modal inicialmente
+  document.body.appendChild(modalLoginUser);
+
+  modalLoginUser.innerHTML = `
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <p>Usuario no encontrado.</p>
+  </div>
+`;
+
+  modalLoginUser.querySelector('#closeModal').addEventListener('click', () => {
+    modalLoginUser.style.display = 'none'; // Cerrar el modal al hacer clic en el botón de cierre
+  });
+
   // Función botón Login
   const buttonLogin = document.createElement('button'); // creamos el  boton
   buttonLogin.textContent = 'Ingresar'; // agregamos nombre al boton
@@ -42,11 +93,11 @@ function login(navigateTo) {
     }).catch((error) => {
       const errorCode = error.code;
       if (errorCode === 'auth/invalid-email') {
-        alert('El correo no es valido');
-      } else if (errorCode === 'auth/user-not-found') {
-        alert('Usuario no logueado');
+        modalLogin.style.display = 'block';
       } else if (errorCode === 'auth/wrong-password') {
-        alert('La contraseña es incorrecta');
+        modalLoginPass.style.display = 'block';
+      } else if (errorCode === 'auth/user-not-found') {
+        modalLoginUser.style.display = 'block';
       }
     });
   });

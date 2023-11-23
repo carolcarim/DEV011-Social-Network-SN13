@@ -17,9 +17,8 @@ function welcome(navigateTo) {
   const buttonIniciarSesion = document.createElement('button'); // creamos el elemento boton
   buttonIniciarSesion.setAttribute('id', 'btnIniciarSesion2'); // agregamos
   buttonIniciarSesion.textContent = 'Iniciar sesión'; // contenido del boton
-  buttonIniciarSesion.addEventListener('click', () =>
+  buttonIniciarSesion.addEventListener('click', () => {
   // evento
-  {
     navigateTo('/login');
   });
 

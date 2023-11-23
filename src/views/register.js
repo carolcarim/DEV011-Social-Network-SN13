@@ -1,5 +1,8 @@
 import { createUser } from '../lib/auth';
 
+// eslint-disable-next-line import/no-mutable-exports
+let registeredUserName = '';
+
 function register(navigateTo) {
   const section = document.createElement('section');
   section.setAttribute('id', 'sectionRegister'); // agregamos id
@@ -19,10 +22,14 @@ function register(navigateTo) {
   // Input para nombre de usuario, correo y crear contraseña
   const form = document.createElement('form');
 
-  /* //Nombre de usuario
-const inputUserName = document.createElement("input");
-inputUserName.setAttribute("id", "inputUserName"); //agregamos id
-inputUserName.placeholder = "Ingresa un nombre de usuario"; */
+  // Nombre de usuario
+  const inputUserName = document.createElement('input');
+  inputUserName.setAttribute('id', 'inputUserName'); // agregamos id
+  inputUserName.placeholder = 'Ingresa un nombre de usuario';
+  inputUserName.addEventListener('input', (event) => {
+    // Actualizar la variable global cuando el usuario escriba en el campo
+    registeredUserName = event.target.value;
+  });
 
   // Correo
   const inputNewEmail = document.createElement('input');
@@ -35,6 +42,57 @@ inputUserName.placeholder = "Ingresa un nombre de usuario"; */
   inputCreatePass.placeholder = 'Ingresa una contraseña';
   inputCreatePass.type = 'password'; // para que no se vea las letras al colocar la contraseña
 
+  // Modal formato de correo no válido
+  const modalRegisterEmail = document.createElement('div');
+  modalRegisterEmail.setAttribute('id', 'modalRegisterEmail');
+  modalRegisterEmail.style.display = 'none'; // Ocultar el modal inicialmente
+  document.body.appendChild(modalRegisterEmail);
+
+  modalRegisterEmail.innerHTML = `
+<div class="modal-content">
+<span class="close" id="closeModal">&times;</span>
+<p>El formato del correo electrónico no es válido.</p>
+</div>
+`;
+
+  modalRegisterEmail.querySelector('#closeModal').addEventListener('click', () => {
+    modalRegisterEmail.style.display = 'none'; // Cerrar el modal al hacer clic en el botón de cierre
+  });
+
+  // Modal contraseña invalida
+  const modalRegisterPass = document.createElement('div');
+  modalRegisterPass.setAttribute('id', 'modalRegisterPass');
+  modalRegisterPass.style.display = 'none'; // Ocultar el modal inicialmente
+  document.body.appendChild(modalRegisterPass);
+
+  modalRegisterPass.innerHTML = `
+<div class="modal-content">
+<span class="close" id="closeModal">&times;</span>
+<p>La contraseña debe tener al menos 6 caracteres entre letras y números.</p>
+</div>
+`;
+
+  modalRegisterPass.querySelector('#closeModal').addEventListener('click', () => {
+    modalRegisterPass.style.display = 'none'; // Cerrar el modal al hacer clic en el botón de cierre
+  });
+
+  // Modal correo ya ha sido registrado
+  const modalRegisterError = document.createElement('div');
+  modalRegisterError.setAttribute('id', 'modalRegisterError');
+  modalRegisterError.style.display = 'none'; // Ocultar el modal inicialmente
+  document.body.appendChild(modalRegisterError);
+
+  modalRegisterError.innerHTML = `
+<div class="modal-content">
+  <span class="close" id="closeModal">&times;</span>
+  <p>Error: correo ya ha sido registrado.</p>
+</div>
+`;
+
+  modalRegisterError.querySelector('#closeModal').addEventListener('click', () => {
+    modalRegisterError.style.display = 'none'; // Cerrar el modal al hacer clic en el botón de cierre
+  });
+
   // Función botón para registrarse
   const buttonRegister = document.createElement('button'); // creamos el  boton
   buttonRegister.textContent = 'Registrarme'; // agregamos nombre al boton
@@ -43,15 +101,15 @@ inputUserName.placeholder = "Ingresa un nombre de usuario"; */
     const password = document.getElementById('inputCreatePass').value;
     const email = document.getElementById('inputNewEmail').value;
     createUser(email, password).then((cred) => {
-      alert('Usuario creado');
+      navigateTo('/welcome');
     }).catch((error) => {
       const errorCode = error.code;
       if (errorCode === 'auth/invalid-email') {
-        alert('El correo no es valido');
+        modalRegisterEmail.style.display = 'block';
       } else if (errorCode === 'auth/email-already-in-use') {
-        alert('El correo ya esta en uso');
+        modalRegisterError.style.display = 'block';
       } else if (errorCode === 'auth/weak-password') {
-        alert('La contraseña debe tener al menos 6 caracteres');
+        modalRegisterPass.style.display = 'block';
       }
     });
   });
@@ -67,7 +125,9 @@ inputUserName.placeholder = "Ingresa un nombre de usuario"; */
 
   // Para agregar los elementos a la seccion
   // eslint-disable-next-line max-len
-  section.append(img, title, form, inputNewEmail, inputCreatePass, buttonRegister, buttonReturnRegister);
+  section.append(img, title, form, inputUserName, inputNewEmail, inputCreatePass, buttonRegister, buttonReturnRegister);
   return section;
 }
+
+export { registeredUserName };
 export default register;

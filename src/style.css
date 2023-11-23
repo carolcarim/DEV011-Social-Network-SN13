@@ -1,414 +1,463 @@
 body {
-background-color: rgb(23, 23, 23);
-}
+  background-color: rgb(23, 23, 23);
+  background-image: url('./images/39.png');
+  background-size: 60vw; /* Ajusta el tamaño de la imagen al 100% del ancho del viewport */
+  background-repeat: repeat;
+  background-position: center; /* Posición de la imagen en el botón */
+  
+  }
+  
+  #drink {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+  }
+  
+  #sectionHome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #titleHome {
+    margin-top: 550px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+  }
+  
+  #btnIniciarSesion,
+  #btnRegistrarse {
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #16a5a3;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 50px;
+    width: 40%;
+    height: 40px;
+    margin: 10px;
+  }
+  
+  #sectionLogin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #drink2 {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+  }
+  
+  #titleLogin {
+    margin-top: 450px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 23px;
+    color: #ffffff;
+  }
+  
+  #modalLogin, #modalLoginPass, #modalLoginUser {
+    position: absolute;
+    top: 62%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    width: 79%;
+    height: 12%;
+    overflow: auto;
+    background-color: rgb(255, 255, 255);
+  }
+  
+  #modalLogin .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: red;
+    font-size: 16px;
+  }
 
-#drink {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 250px;
-  height: 250px;
-}
+  #modalLoginPass .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: red;
+    font-size: 16px;
+  }
 
-#sectionHome {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#titleHome {
-  margin-top: 550px;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #ffffff;
-}
-
-#btnIniciarSesion,
-#btnRegistrarse {
-  background-color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: #16a5a3;
-  font-size: 20px;
-  cursor: pointer;
-  border-radius: 50px;
-  width: 40%;
-  height: 40px;
-  margin: 10px;
-}
-
-#sectionLogin {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#drink2 {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 250px;
-  height: 250px;
-}
-
-#titleLogin {
-  margin-top: 450px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 23px;
-  color: #ffffff;
-}
-
-#modalLogin {
-  position: absolute;
-  top: 62%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 15px;
-  width: 79%;
-  height: 12%;
-  overflow: auto;
-  background-color: rgb(255, 255, 255);
-}
-
-#modalLogin .modal-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: red;
-  font-size: 16px;
-}
-
-#inputEmail,
-#inputPass {
-  width: 80%;
-  height: 35px;
-  margin: 10px;
-  border-radius: 10px;
-}
-
-#btnLogin {
-  background-color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: #16a5a3;
-  font-size: 18px;
-  cursor: pointer;
-  border-radius: 50px;
-  width: 40%;
-  height: 40px;
-  margin: 10px;
-}
-
-#btnReturnLogin, #btnReturnRegister {
-  background-color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: #16a5a3;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 50px;
-  width: 30%;
-  height: 40px;
-  margin: 10px;
-}
-
-#btnGoogle {
-  background-color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: #16a5a3;
-  font-size: 18px;
-  cursor: pointer;
-  border-radius: 50px;
-  width: 85%;
-  height: 40px;
-  margin: 10px;
-  background-image: url("https://rotulosmatesanz.com/wp-content/uploads/2017/09/2000px-Google_G_Logo.svg_.png"); /* Ruta de la imagen de fondo */
-  background-size: 20px 20px; /* Tamaño de la imagen de fondo */
-  background-repeat: no-repeat; /* Evita la repetición de la imagen de fondo */
-  background-position: 35px center; /* Posición de la imagen en el botón */
-  padding-left: 20px; /* Espacio para la imagen */
-}
-
-#logoGoogle {
-  width: 20px;
-  height: 20px;
-}
-
-#sectionRegister {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#titleRegister {
-  margin-top: 400px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 23px;
-  color: #ffffff;
-}
-
-#drink3 {
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 250px;
-  height: 250px;
-}
-
-#inputUserName,
-#inputNewEmail,
-#inputCreatePass {
-  width: 80%;
-  height: 35px;
-  margin: 10px;
-  border-radius: 10px;
-}
-
-#btnRegister {
-  background-color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: #16a5a3;
-  font-size: 20px;
-  cursor: pointer;
-  border-radius: 50px;
-  width: 40%;
-  height: 40px;
-  margin: 10px;
-}
-
-#modalRegisterEmail {
-  position: absolute;
-  top: 62%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 15px;
-  width: 79%;
-  height: 12%;
-  overflow: auto;
-  background-color: rgb(255, 255, 255);
-}
-
-#modalRegisterEmail .modal-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: red;
-  font-size: 16px;
-}
-
-#modalRegisterPass {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 15px;
-  width: 79%;
-  height: 12%;
-  overflow: auto;
-  background-color: rgb(255, 255, 255);
-}
-
-#modalRegisterPass .modal-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: red;
-  font-size: 16px;
-}
-
-#sectionWelcome {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#drink2welcome {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 250px;
-  height: 250px;
-}
-
-#titleWelcome {
-  margin-top: 500px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  color: #ffffff;
-}
-
-#btnIniciarSesion2 {
-  background-color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: #16a5a3;
-  font-size: 20px;
-  cursor: pointer;
-  border-radius: 50px;
-  width: 40%;
-  height: 40px;
-  margin: 10px;
-}
-
-#sectionHomepage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#menuBarHp {
-background-color: #16a5a3;
-width: 100%;
-height: 50px;
-position: absolute;
-  top: 5%;
-  left: 0;
-}
-
-#drink4 {
-  position: absolute;
-  top: 8%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
-}
-
-#btnCreatePost {
-  background-color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: #16a5a3;
-  font-size: 15px;
-  cursor: pointer;
-  border-radius: 10px;
-  width: 20%;
-  height: 30px;
-  margin: 10px;
-  position: absolute;
-  top: 23%;
-  left: 37%;
-}
-
-/* INPUT PARA INGRESAR TEXTO QUE SE QUIERE PUBLICAR*/
-#postHp { 
-  background-color: white;
-  border: 2px solid rgb(233, 193, 193);
-  border-radius: 10px;
-  width: 80%;
-  height: 60px;
-  margin: 10px;
-  position: absolute;
-  top: 15%;
-  left: 7%;
-}
-
- .postSection {
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  margin-top: 260px; 
-}
-
-/* Estilos para cada post */
-.postStyles {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: #87c6c5;
-  width: 300px;
-  height: auto;
-} 
-
-/* Estilos para el contenido del post */
-.eachPostContent {
-  border: none;
+  #modalLoginUser .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: red;
+    font-size: 16px;
+  }
+  
+  #inputEmail,
+  #inputPass {
+    width: 80%;
+    height: 35px;
+    margin: 10px;
+    border-radius: 10px;
+  }
+  
+  #btnLogin {
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #16a5a3;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 50px;
+    width: 40%;
+    height: 40px;
+    margin: 10px;
+  }
+  
+  #btnReturnLogin, #btnReturnRegister {
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #16a5a3;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50px;
+    width: 30%;
+    height: 40px;
+    margin: 10px;
+  }
+  
+  #btnGoogle {
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #16a5a3;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 50px;
+    width: 85%;
+    height: 40px;
+    margin: 10px;
+    background-image: url("https://rotulosmatesanz.com/wp-content/uploads/2017/09/2000px-Google_G_Logo.svg_.png"); /* Ruta de la imagen de fondo */
+    background-size: 20px 20px; /* Tamaño de la imagen de fondo */
+    background-repeat: no-repeat; /* Evita la repetición de la imagen de fondo */
+    background-position: 35px center; /* Posición de la imagen en el botón */
+    padding-left: 20px; /* Espacio para la imagen */
+  }
+  
+  #logoGoogle {
+    width: 20px;
+    height: 20px;
+  }
+  
+  #sectionRegister {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #titleRegister {
+    margin-top: 400px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 23px;
+    color: #ffffff;
+  }
+  
+  #drink3 {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+  }
+  
+  #inputUserName,
+  #inputNewEmail,
+  #inputCreatePass {
+    width: 80%;
+    height: 35px;
+    margin: 10px;
+    border-radius: 10px;
+  }
+  
+  #btnRegister {
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #16a5a3;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 50px;
+    width: 40%;
+    height: 40px;
+    margin: 10px;
+  }
+  
+  #modalRegisterEmail {
+    position: absolute;
+    top: 62%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    width: 79%;
+    height: 12%;
+    overflow: auto;
+    background-color: rgb(255, 255, 255);
+  }
+  
+  #modalRegisterEmail .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: red;
+    font-size: 16px;
+  }
+  
+  #modalRegisterPass {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    width: 79%;
+    height: 12%;
+    overflow: auto;
+    background-color: rgb(255, 255, 255);
+  }
+  
+  #modalRegisterPass .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: red;
+    font-size: 16px;
+  }
+  
+  #sectionWelcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #drink2welcome {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+  }
+  
+  #titleWelcome {
+    margin-top: 500px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+  }
+  
+  #btnIniciarSesion2 {
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #16a5a3;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 50px;
+    width: 40%;
+    height: 40px;
+    margin: 10px;
+  }
+  
+  #sectionHomepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #menuBarHp {
+  background-color: #16a5a3;
   width: 100%;
-  margin-bottom: 10px;
-  background-color: #87c6c5;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: normal;
-  color: black;
-  word-break: break-all;
-}
+  height: 50px;
+  position: absolute;
+    top: 5%;
+    left: 0;
+  }
+  
+  #drink4 {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+  }
 
-.userName {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: black;
-  font-size: 12px;
-  margin: 5px;
-}
-
-/* Estilos para el botón de "Like" */
-.postStyles .likeButton {
-  background-color: transparent;
-  padding: 10px 10px;
-  cursor: pointer;
-  border: none;
-  background-image: url('https://cdn-icons-png.flaticon.com/512/929/929559.png');
-  background-size: 20px;
-  background-position: center;
-  background-repeat: no-repeat;
-  margin: 3px;
-}
-
-.likeButton.liked {
-  background-image: url('https://cdn1.iconfinder.com/data/icons/app-user-interface-flat/64/like_love_heart_app_user_interface-512.png');
-  background-size: 23px;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.likeCounter {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: black;
-  font-size: 12px;
-  margin: 5px;
-}
-
-.postStyles .btnEdit {
-  background-color: transparent;
-  padding: 10px 10px;
-  cursor: pointer;
-  border: none;
-  background-image: url('https://cdn-icons-png.flaticon.com/512/1827/1827933.png');
-  background-size: 20px;
-  background-position: center;
-  background-repeat: no-repeat;
-  margin: 3px;
-}
-
-.postStyles .btnDelete {
-  background-color: transparent;
-  padding: 10px 10px;
-  cursor: pointer;
-  border: none;
-  background-image: url('https://cdn-icons-png.flaticon.com/512/3221/3221845.png');
-  background-size: 20px;
-  background-position: center;
-  background-repeat: no-repeat;
-  margin: 3px;
-}
+  #btnSignOut {
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #16a5a3;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 25%;
+    height: 30px;
+    margin: 10px;
+    position: absolute;
+    top: 5%;
+    left: 65%;
+  }
+  
+  #btnCreatePost {
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #16a5a3;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 20%;
+    height: 30px;
+    margin: 10px;
+    position: absolute;
+    top: 23%;
+    left: 37%;
+  }
+  
+  /* INPUT PARA INGRESAR TEXTO QUE SE QUIERE PUBLICAR*/
+  #postHp { 
+    background-color: white;
+    border: 2px solid rgb(233, 193, 193);
+    border-radius: 10px;
+    width: 80%;
+    height: 60px;
+    margin: 10px;
+    position: absolute;
+    top: 15%;
+    left: 7%;
+  }
+  
+   .postSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-top: 260px; 
+  }
+  
+  /* Estilos para cada post */
+  .postStyles {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #87c6c5;
+    width: 300px;
+    height: auto;
+  } 
+  
+  /* Estilos para el contenido del post */
+  .eachPostContent {
+    border: none;
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: #87c6c5;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    color: black;
+    word-wrap: break-word;
+    text-align: justify;
+  }
+  
+  .userName {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: black;
+    font-size: 12px;
+    margin: 5px;
+  }
+  
+  /* Estilos para el botón de "Like" */
+  .postStyles .likeButton {
+    background-color: transparent;
+    padding: 10px 10px;
+    cursor: pointer;
+    border: none;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/929/929559.png');
+    background-size: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 3px;
+  }
+  
+  .likeButton.liked {
+    background-image: url('https://cdn1.iconfinder.com/data/icons/app-user-interface-flat/64/like_love_heart_app_user_interface-512.png');
+    background-size: 23px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .likeCounter {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: black;
+    font-size: 12px;
+    margin: 5px;
+  }
+  
+  .postStyles .btnEdit {
+    background-color: transparent;
+    padding: 10px 10px;
+    cursor: pointer;
+    border: none;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/1827/1827933.png');
+    background-size: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 3px;
+  }
+  
+  .postStyles .btnDelete {
+    background-color: transparent;
+    padding: 10px 10px;
+    cursor: pointer;
+    border: none;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/3221/3221845.png');
+    background-size: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 3px;
+  }
+  

@@ -17,19 +17,19 @@ import {
 // eslint-disable-next-line max-len
 export const signInUsers = async (email, password) => signInWithEmailAndPassword(auth, email, password);
 
-export function call_login_google() {
+// eslint-disable-next-line camelcase
+export async function call_login_google() {
   const provider = new GoogleAuthProvider();
-  return signInWithPopup(auth, provider)
-    .then((result) => {
-      const user = result.user;
-      console.log({ user });
-      return user;
-    })
-    .catch((error) => {
-      const errorMessage = error.message;
-      console.log({ errorMessage });
-      return errorMessage;
-    });
+  try {
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+    console.log({ user });
+    return user;
+  } catch (error) {
+    const errorMessage = error.message;
+    console.log({ errorMessage });
+    return errorMessage;
+  }
 }
 
 // Función para el botón de registrar nuevos usuarios
@@ -63,7 +63,7 @@ export async function likePost(postId, operationType) {
     if (postDoc.exists()) {
       // Obtener la lista de usuarios que han dado like
       const likedBy = postDoc.data().likedBy || [];
-
+      console.log(likedBy);
       // Realizar la operación correspondiente
       if (operationType === 'arrayUnion') {
         await updateDoc(postRef, {
@@ -90,7 +90,7 @@ export const deletePost = (documentId) => {
   deleteDoc(doc(db, 'postDrinks', documentId));
 };
 
-// Función para cerrar sesión 
+// Función para cerrar sesión
 export const signOutFunction = () => {
   signOut(auth);
 };

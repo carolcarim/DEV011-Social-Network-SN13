@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // eslint-disable-next-line camelcase
 import { call_login_google, signInUsers } from '../lib/auth';
 
@@ -89,6 +90,7 @@ function login(navigateTo) {
     const password = document.getElementById('inputPass').value;
     const email = document.getElementById('inputEmail').value;
     signInUsers(email, password).then((cred) => {
+      console.log('Ingreso exitoso');
       navigateTo('/homepage');
     }).catch((error) => {
       const errorCode = error.code;

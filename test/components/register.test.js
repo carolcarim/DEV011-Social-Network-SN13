@@ -1,17 +1,39 @@
+/**
+ * @jest-environment jsdom
+ */
+
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { expect, jest } from '@jest/globals';
 import register from '../../src/views/register.js';
+import * as auth from '../../src/lib/auth.js';
 
-jest.mock('../../src/lib/auth.js', () => ({
-  createUser: jest.fn(() => Promise.resolve()),
-})); // se usa jestmock para simular firebase
+// se usa jestmock para simular firebase
+describe('register', () => {
+  test('existe un boton', () => {
+    const DOM = document.createElement('div');
+    DOM.append(register());
+    const haveAButtonLogin = DOM.querySelector('#btnRegister');
+    expect(haveAButtonLogin).not.toBe(undefined);
+  });
+  test('Hay un input para  la contraseña', () => {
+    const DOM = document.createElement('div');
+    DOM.append(register());
+    const haveaInput = DOM.querySelector('#inputCreatePass');
+    haveaInput.click();
+    expect(haveaInput).not.toBe(undefined); // evalua si una funcion ha sido llam,ada o no
+  });
 
-describe('createUser', () => {
-  it('should call createUserWithEmailAndPassword with the correct parameters and navigate to "/"', async () => {
-    const navigateTo = jest.fn(); // Mock navigateTo function
-    const email = 'test@example.com'; // Mock email
-    const password = 'password123'; // Mock password
-
-    await createUser(navigateTo);
-
-    expect(navigateTo).toHaveBeenCalledWith('/');
+  test('Al dar click registra y te redirige a welcome', () => {
+    const DOM = document.createElement('div');
+    const createUser = auth.createUser;
+    const navigaTo = jest.fn();
+    jest.spyOn(auth, 'createUser').mockImplementation(() => Promise.resolve({ alert: 'Usuario creado exitosamente' }));
+    DOM.append(register(navigaTo));
+    const btnRegister = DOM.querySelector('#btnRegister');
+    btnRegister.click();
+    setTimeout(() => {
+      expect(navigaTo).toHaveBeenCalledWith('/welcome');
+      expect(createUser).toHaveBeenCalledTimes(1);
+    });
   });
 });

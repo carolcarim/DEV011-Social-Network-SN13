@@ -99,16 +99,14 @@ function register(navigateTo) {
   buttonRegister.setAttribute('id', 'btnRegister'); // agregamos id
   buttonRegister.addEventListener('click', () => {
     createUser(inputNewEmail.value, inputCreatePass.value)
-    .then(() => {
-      console.log('Usuario creado exitosamente');
-      navigateTo('/welcome');
-    })
-    .catch((error) => {
-      console.error('Error al crear el usuario:', error);
-    })
-    });
-
-
+      .then(() => {
+        console.log('Usuario creado exitosamente');
+        navigateTo('/welcome');
+      })
+      .catch((error) => {
+        console.error('Error al crear el usuario:', error);
+      });
+  });
 
   // Función botón regresar
   const buttonReturnRegister = document.createElement('button'); // falta crear evento
@@ -121,12 +119,12 @@ function register(navigateTo) {
 
   // Para agregar los elementos a la seccion
   // eslint-disable-next-line max-len
-//   section.append(img, title, form, inputNewEmail, inputCreatePass, buttonRegister, buttonReturnRegister);
-//   return section;
-// }
-// export default register;
+  //   section.append(img, title, form, inputNewEmail, inputCreatePass, buttonRegister, buttonReturnRegister);
+  //   return section;
+  // }
+  // export default register;
 
-/* function register(navigateTo) {
+  /* function register(navigateTo) {
   const section = document.createElement('section');
   section.setAttribute('id', 'sectionRegister'); // agregamos id
 
@@ -191,7 +189,7 @@ inputUserName.placeholder = "Ingresa un nombre de usuario"; */
     navigateTo('/');
   }); */
 
-  //Para agregar los elementos a la seccion
+  // Para agregar los elementos a la seccion
   // eslint-disable-next-line max-len
   section.append(img, title, form, inputUserName, inputNewEmail, inputCreatePass, buttonRegister, buttonReturnRegister);
   return section;

@@ -2,10 +2,6 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import {
-  doc as fnDoc,
-  getDoc,
-} from 'firebase/firestore';
-import {
   likePost, deletePost, signOutFunction,
 } from '../lib/auth.js';
 
@@ -13,7 +9,7 @@ import {
   createNewPost, paintRealTime,
 } from '../lib/store.js';
 import {
-  auth, db,
+  auth,
 } from '../lib/firebase.js';
 import { registeredUserName } from './register.js';
 
@@ -107,8 +103,8 @@ function homepage(navigateTo) {
 
         likeButton.addEventListener('click', async () => {
           const postId = doc.id;
-          const prueba = await likePost(postId, "arrayUnion")
-          console.log({prueba});
+          const prueba = await likePost(postId, 'arrayUnion');
+          console.log(prueba);
           // try {
           // // Obtener la información actual del post
           //   console.log({postId});

@@ -460,4 +460,46 @@ body {
     background-repeat: no-repeat;
     margin: 3px;
   }
-  
+
+  @media (max-width: 820px) {
+    #drink2, #drink3, #drink4 {
+      width: 200px;
+      height: 200px;
+    }
+
+    #drink {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 250px;
+    }
+    #sectionHome {
+      max-width: 820px;
+    }
+    #btnIniciarSesion, #btnRegistrarse, #btnLogin, #btnRegister {
+      width: 80%;
+    }
+    #sectionLogin {
+      max-width: 820px;
+    }
+    #titleLogin {
+      margin-top: 400px;
+    }
+    #sectionRegister {
+      max-width: 820px;
+    }
+    #drink3 {
+      top: 20%;
+    }
+    #btnReturnLogin, #btnReturnRegister {
+      width: 25%;
+    }
+    #menuBarHp {
+      width: 820px;
+    }
+    #btnSignOut {
+      margin-top: 10px;
+    }
+  }

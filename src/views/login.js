@@ -89,6 +89,7 @@ function login(navigateTo) {
     const password = document.getElementById('inputPass').value;
     const email = document.getElementById('inputEmail').value;
     signInUsers(email, password).then((cred) => {
+      console.log(cred);
       navigateTo('/homepage');
     }).catch((error) => {
       const errorCode = error.code;
@@ -107,6 +108,7 @@ function login(navigateTo) {
   buttonGoogle.setAttribute('id', 'btnGoogle'); // agregamos id
   buttonGoogle.addEventListener('click', () => {
     call_login_google().then((res) => navigateTo('/homepage'));
+    console.log(res);
   });
 
   // Función botón regresar

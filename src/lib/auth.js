@@ -17,6 +17,7 @@ import {
 // eslint-disable-next-line max-len
 export const signInUsers = async (email, password) => signInWithEmailAndPassword(auth, email, password);
 
+// eslint-disable-next-line camelcase
 export function call_login_google() {
   const provider = new GoogleAuthProvider();
   return signInWithPopup(auth, provider)
@@ -63,7 +64,7 @@ export async function likePost(postId, operationType) {
     if (postDoc.exists()) {
       // Obtener la lista de usuarios que han dado like
       const likedBy = postDoc.data().likedBy || [];
-
+      console.log(likedBy);
       // Realizar la operación correspondiente
       if (operationType === 'arrayUnion') {
         await updateDoc(postRef, {
@@ -90,7 +91,7 @@ export const deletePost = (documentId) => {
   deleteDoc(doc(db, 'postDrinks', documentId));
 };
 
-// Función para cerrar sesión 
+// Función para cerrar sesión
 export const signOutFunction = () => {
   signOut(auth);
 };

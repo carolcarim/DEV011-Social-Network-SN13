@@ -27,8 +27,8 @@ function homepage(navigateTo) {
   menuBar.setAttribute('id', 'menuBarHp'); // agregamos id
 
   // Definir la variable userId fuera de la función onAuthStateChanged
-  let userId = null;
-
+  /*   let userId = null;
+ */
   // Función botón "Crear Post"
   const buttonCreatePost = document.createElement('button');
   buttonCreatePost.textContent = 'Publicar';
@@ -42,13 +42,14 @@ function homepage(navigateTo) {
     // Obtener el estado de autenticación actual
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        userId = user.uid;
+        // Si el usuario está autenticado
+        const userId = user.uid;
         console.log('ID del usuario actual:', userId);
         createNewPost(user, content);
         // Después de crear el nuevo post, volver a pintar todos los posts
         paintRealTime();
       } else {
-        console.error("Error: 'userId' no está definido");
+        console.error('Error: El usuario no está autenticado.');
       }
     });
   });

@@ -5,6 +5,7 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 import {
   addDoc, arrayUnion, arrayRemove, collection,
@@ -34,7 +35,16 @@ export async function call_login_google() {
 
 // Función para el botón de registrar nuevos usuarios
 // eslint-disable-next-line max-len
-export const createUser = (email, password) => createUserWithEmailAndPassword(auth, email, password);
+export const createUser = (email, password, displayName) => createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    console.log('Nombre de usuario en createUser:', displayName);
+    return updateProfile(user, { displayName })
+      .then(() => user);
+  })
+  .catch((error) => {
+    throw error;
+  });
 
 // Manejar cambios en el estado de autenticación
 onAuthStateChanged(auth, (user) => {

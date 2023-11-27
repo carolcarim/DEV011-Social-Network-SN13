@@ -66,6 +66,7 @@ export async function likePost(postId, operationType) {
       console.log(likedBy);
       // Realizar la operación correspondiente
       if (operationType === 'arrayUnion') {
+        console.log('arrayUnion');
         await updateDoc(postRef, {
           likedBy: arrayUnion(user.uid),
         });

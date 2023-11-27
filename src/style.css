@@ -64,7 +64,7 @@ body {
     color: #ffffff;
   }
   
-  #modalLogin, #modalLoginPass, #modalLoginUser {
+  #modalLogin {
     position: absolute;
     top: 62%;
     left: 50%;
@@ -76,6 +76,30 @@ body {
     background-color: rgb(255, 255, 255);
   }
   
+  #modalLoginPass {
+    position: absolute;
+    top: 62%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    width: 79%;
+    height: 12%;
+    overflow: auto;
+    background-color: rgb(255, 255, 255);
+  }
+
+  #modalLoginUser {
+    position: absolute;
+    top: 61%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    width: 79%;
+    height: 12%;
+    overflow: auto;
+    background-color: rgb(255, 255, 255);
+  }
+
   #modalLogin .modal-content {
     display: flex;
     flex-direction: column;
@@ -218,12 +242,12 @@ body {
   
   #modalRegisterEmail {
     position: absolute;
-    top: 62%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 15px;
     width: 79%;
-    height: 12%;
+    height: 20%;
     overflow: auto;
     background-color: rgb(255, 255, 255);
   }
@@ -243,17 +267,42 @@ body {
   
   #modalRegisterPass {
     position: absolute;
-    top: 50%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 15px;
     width: 79%;
-    height: 12%;
+    height: 20%;
     overflow: auto;
     background-color: rgb(255, 255, 255);
   }
   
   #modalRegisterPass .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: red;
+    font-size: 16px;
+  }
+
+  #modalRegisterError {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    width: 79%;
+    height: 20%;
+    overflow: auto;
+    background-color: rgb(255, 255, 255);
+  }
+  
+  #modalRegisterError .modal-content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -461,5 +510,80 @@ body {
     margin: 3px;
   }
   
+  @media (max-width: 820px) {
+    #drink2, #drink3{
+      width: 200px;
+      height: 200px;
+    }
 
+    #drink4 {
+      width: 100px;
+      height: 100px;
+    }
+
+     #drink {
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 250px;
+      height: 250px;
+    }
+
+    #sectionHome {
+      max-width: 820px;
+    }
+    #btnIniciarSesion, #btnRegistrarse, #btnLogin, #btnRegister {
+      width: 80%;
+    }
+    #sectionLogin {
+      max-width: 820px;
+    }
+    #titleLogin {
+      margin-top: 400px;
+    }
+    #sectionRegister {
+      max-width: 820px;
+    }
+    #drink3 {
+      top: 20%;
+    }
+    #btnReturnLogin, #btnReturnRegister {
+      width: 25%;
+    }
+
+    /* #btnCreatePost {
+      width: 20%;
+      height: 30px;
+      margin: 10px;
+      position: absolute;
+      top: 22%;
+      left: 37%;
+    }
+
+    .postSection {
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+      margin-top: 310px; 
+    }
+
+  .postStyles {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #87c6c5;
+    width: 630px;
+    height: auto;
+  } 
+
+    #menuBarHp {
+      width: 820px;
+    }
+    #btnSignOut {
+      margin-top: 10px;
+      width: 20%;
+    } */
+  } 
   

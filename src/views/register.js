@@ -54,7 +54,6 @@ function register(navigateTo) {
 <p>El formato del correo electrónico no es válido.</p>
 </div>
 `;
-
   modalRegisterEmail.querySelector('#closeModal').addEventListener('click', () => {
     modalRegisterEmail.style.display = 'none'; // Cerrar el modal al hacer clic en el botón de cierre
   });
@@ -104,7 +103,14 @@ function register(navigateTo) {
         navigateTo('/welcome');
       })
       .catch((error) => {
-        console.error('Error al crear el usuario:', error);
+        const errorCode = error.code;
+        if (errorCode === 'auth/invalid-email') {
+          modalRegisterEmail.style.display = 'block';
+        } else if (errorCode === 'auth/email-already-in-use') {
+          modalRegisterError.style.display = 'block';
+        } else if (errorCode === 'auth/weak-password') {
+          modalRegisterPass.style.display = 'block';
+        }
       });
   });
 

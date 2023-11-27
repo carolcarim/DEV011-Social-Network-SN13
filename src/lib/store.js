@@ -8,13 +8,14 @@ import { db } from './firebase';
 const postCollection = collection(db, 'postDrinks');
 
 // Función para agregar un nuevo post a Firestore
-export function createNewPost(userId, content) {
-  if (userId && content) {
+export function createNewPost(user, content) {
+  if (user && content) {
     const timestamp = new Date();
 
     // Agregar un nuevo documento con un ID generado automáticamente
     const newDocRef = addDoc(postCollection, {
-      userId,
+      userId: user.uid,
+      userName: user.displayName,
       content,
       timestamp,
       likedBy: [],

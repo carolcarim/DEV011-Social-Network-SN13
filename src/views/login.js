@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // eslint-disable-next-line camelcase
 import { call_login_google, signInUsers } from '../lib/auth';
 
@@ -30,55 +31,21 @@ function login(navigateTo) {
   inputPass.placeholder = 'Ingresar contraseña...';
   inputPass.type = 'password'; // para que no se vea las letras al colocar la contraseña
 
-  // Modal correo invalido
-  const modalLogin = document.createElement('div');
-  modalLogin.setAttribute('id', 'modalLogin');
-  modalLogin.style.display = 'none'; // Ocultar el modal inicialmente
-  document.body.appendChild(modalLogin);
+  // Modal correo y/o contraseña incorrectos
+  const modalLoginError = document.createElement('div');
+  modalLoginError.setAttribute('id', 'modalLoginError');
+  modalLoginError.style.display = 'none'; // Ocultar el modal inicialmError
+  document.body.appendChild(modalLoginError);
 
-  modalLogin.innerHTML = `
+  modalLoginError.innerHTML = `
   <div class="modal-content">
     <span class="close" id="closeModal">&times;</span>
-    <p>El correo ingresado no es inválido.</p>
+    <p>El correo y/o contraseña ingresados son inválidos.</p>
   </div>
 `;
 
-  modalLogin.querySelector('#closeModal').addEventListener('click', () => {
-    modalLogin.style.display = 'none'; // Cerrar el modal al hacer clic en el botón de cierre
-  });
-
-  // Modal contraseña invalida
-  const modalLoginPass = document.createElement('div');
-  modalLoginPass.setAttribute('id', 'modalLoginPass');
-  modalLoginPass.style.display = 'none'; // Ocultar el modal inicialmente
-  document.body.appendChild(modalLoginPass);
-
-  modalLoginPass.innerHTML = `
-  <div class="modal-content">
-    <span class="close" id="closeModal">&times;</span>
-    <p>La contraseña ingresada es inválida.</p>
-  </div>
-`;
-
-  modalLoginPass.querySelector('#closeModal').addEventListener('click', () => {
-    modalLoginPass.style.display = 'none'; // Cerrar el modal al hacer clic en el botón de cierre
-  });
-
-  // Modal usuario no encontrado
-  const modalLoginUser = document.createElement('div');
-  modalLoginUser.setAttribute('id', 'modalLoginUser');
-  modalLoginUser.style.display = 'none'; // Ocultar el modal inicialmente
-  document.body.appendChild(modalLoginUser);
-
-  modalLoginUser.innerHTML = `
-  <div class="modal-content">
-    <span class="close" id="closeModal">&times;</span>
-    <p>Usuario no encontrado.</p>
-  </div>
-`;
-
-  modalLoginUser.querySelector('#closeModal').addEventListener('click', () => {
-    modalLoginUser.style.display = 'none'; // Cerrar el modal al hacer clic en el botón de cierre
+  modalLoginError.querySelector('#closeModal').addEventListener('click', () => {
+    modalLoginError.style.display = 'none'; // Cerrar el modal al hacer clic en el botón de cierre
   });
 
   // Función botón Login
@@ -88,27 +55,24 @@ function login(navigateTo) {
   buttonLogin.addEventListener('click', async () => {
     const password = document.getElementById('inputPass').value;
     const email = document.getElementById('inputEmail').value;
-    signInUsers(email, password).then((cred) => {
-      console.log(cred);
+    signInUsers(email, password).then((_cred) => {
       navigateTo('/homepage');
     }).catch((error) => {
       const errorCode = error.code;
       if (errorCode === 'auth/invalid-email') {
-        modalLogin.style.display = 'block';
-      } else if (errorCode === 'auth/wrong-password') {
-        modalLoginPass.style.display = 'block';
-      } else if (errorCode === 'auth/user-not-found') {
-        modalLoginUser.style.display = 'block';
+        modalLoginError.style.display = 'block';
+      } else {
+        modalLoginError.style.display = 'block';
       }
     });
   });
+
   // Funcion boton iniciar con google
   const buttonGoogle = document.createElement('button'); // creamos el boton
   buttonGoogle.textContent = 'Iniciar sesión con Google'; // agregamos nombre al boton
   buttonGoogle.setAttribute('id', 'btnGoogle'); // agregamos id
   buttonGoogle.addEventListener('click', () => {
-    call_login_google().then((res) => navigateTo('/homepage'));
-    console.log(res);
+    call_login_google().then((_res) => navigateTo('/homepage'));
   });
 
   // Función botón regresar

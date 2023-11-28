@@ -97,7 +97,7 @@ function register(navigateTo) {
   buttonRegister.textContent = 'Registrarme'; // agregamos nombre al boton
   buttonRegister.setAttribute('id', 'btnRegister'); // agregamos id
   buttonRegister.addEventListener('click', () => {
-    createUser(inputNewEmail.value, inputCreatePass.value)
+    createUser(inputNewEmail.value, inputCreatePass.value, registeredUserName)
       .then(() => {
         console.log('Usuario creado exitosamente');
         navigateTo('/welcome');
